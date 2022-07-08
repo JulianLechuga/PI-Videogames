@@ -1,0 +1,8 @@
+export const A_Z = "A-Z"
+export const Z_A = "Z-A"
+export const ratingOrder = "ratingOrder"
+export const metacriticOrder = "metacriticOrder"
+export const library = "library"
+export const userMade = "userMade"
+export const Action = "Action"
+export const Puzzle = "Puzzle"

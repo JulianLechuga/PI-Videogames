@@ -1,5 +1,13 @@
 .App {
   text-align: center;
+  background-image: url("./assets/main-background.gif");
+  min-height: 100%;
+  width: 100%;
+  height: fit-content;
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-position: center;
+  position: absolute;
 }
 
 .App-logo {

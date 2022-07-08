@@ -1,0 +1,85 @@
+a:link { text-decoration: none; }
+
+
+a:visited { text-decoration: none; }
+
+
+a:hover { text-decoration: none; }
+
+.Card {
+    display:flex;
+    float:left;
+    padding: 0 8px;
+    justify-content: space-evenly;
+    width: 21.75%;
+    height: 285px;
+    background-color: rgb(85, 74, 152);
+    border-radius: 30px;
+    padding-right: 7px ;
+    padding-left: 7px ;
+    padding-bottom: 4px;
+    margin: 20px;
+    min-height: 250px;
+    transition: all .2s ease-in-out;
+  }
+
+.Card:hover {
+  background-color: rgb(36, 134, 225);
+  border-radius: 25px;
+  transform: scale(1.3);
+}
+
+.Card a {
+  color: black
+}
+
+
+.Card img {
+    width:100% ;
+    max-width: fit-content;
+    height: fit-content;
+    max-height: 145px;
+    border: rgb(255, 255, 255) solid 2px;
+    border-radius: 30px;
+  }
+ 
+  
+.cardName{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: lighter;
+  display: inline-flex;
+  color: rgb(233, 233, 233);
+  background-color: rgb(191, 113, 242);
+  border-radius: 30px;
+  text-justify: auto;
+  justify-content: center;
+  align-content: center;
+  width: 73%;
+}  
+
+.detail{
+    color: rgb(0, 0, 0);
+    background-color: rgb(85, 74, 152);
+    text-indent: 4px;
+    width: fit-content;
+    max-width: 1200px;
+    height: fit-content;  
+    padding: 10px;
+    margin: 20px;
+    text-justify: auto;
+    justify-self: center;
+    align-self: center;
+    border: rgb(255, 255, 255) solid 1px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.detail img {
+  width: fit-content;
+  max-width: 950px;
+  height: auto;
+  max-height: 1050px;
+  border: rgb(255, 255, 255) solid 2px;
+  border-radius: 30px;
+}
+

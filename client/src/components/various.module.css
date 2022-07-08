@@ -1,0 +1,84 @@
+.p{
+    display:inline-flex;
+    padding: 15px;
+    justify-content: space-evenly;
+    width: 25.75%;
+    height: fit-content;
+    text-align: center;
+    background-color: rgb(85, 74, 152);
+    border-radius: 30px;
+    margin: 20px;
+    min-height: 250px;
+    transition: all .2s ease-in-out;
+}
+
+.p:hover {
+    transition: all .2,7s ease-in-out;
+    transform: scale(1.2);
+    border: rgb(255, 255, 255) solid 2px;
+}
+
+.test2{
+    margin-left: 20px;
+    height: 375px;
+    width: 330px;
+}
+
+.test3{
+    margin-left: 20px;
+    height: 375px;
+    width: 650px;
+}
+
+.form{
+    color: rgb(0, 0, 0);
+    background-color: rgb(85, 74, 152);
+    text-indent: 4px;
+    width: 600px;
+    max-width: 1200px;
+    height: fit-content;  
+    padding: 10px;
+    margin: 20px;
+    text-justify: auto;
+    justify-self: center;
+    align-self: center;
+    border: rgb(255, 255, 255) solid 1px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.form label {
+    position: absolute;
+    display: flex;
+    font-size: larger;
+    font-weight: bold;
+    text-indent: 4px;
+    width: fit-content;
+    max-width: 1200px;
+    height: fit-content;  
+    padding: 10px;
+    margin: 10px;
+    text-align: start;
+    border-radius: 5px;
+}
+
+.formInputs{
+    position: relative;
+    left: 18px;
+    display: inline;
+    font-size: larger;
+    text-indent: 4px;
+    width: fit-content;
+    max-width: 1200px;
+    height: fit-content;  
+    padding: 10px;
+    margin: 10px;
+    text-justify: auto;
+    justify-self: center;
+    align-self: center;
+}
+
+.form input:hover{
+    transition: all .3s ease-in-out;
+    transform: scale(1.3);
+}
