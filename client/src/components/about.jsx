@@ -44,7 +44,6 @@ export default function About() {
                     <img className={various.test2} src={random2} alt="" />
                     <img className={various.test3} src={random3} alt="" />
             </div>
-
         </div>
-    )
-}
+    );
+};

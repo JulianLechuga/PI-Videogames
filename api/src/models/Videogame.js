@@ -1,5 +1,8 @@
 const { DataTypes, Sequelize } = require('sequelize');
 
+let myGames = 100000
+let db = 201
+
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -7,7 +10,10 @@ module.exports = (sequelize) => {
   sequelize.define('videogame', {
     id: {
       type: DataTypes.INTEGER,
-      defaultValue: DataTypes.UUIDV4,
+      defaultValue: function() {
+        myGames++
+        return `${db}${myGames}`
+      },
       primaryKey: true
     },
     name: {
@@ -15,7 +21,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     description:{
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING(50000),
       allowNull: true
     },
     released: {
@@ -24,7 +30,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     platforms: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
     rating: {
@@ -46,10 +52,6 @@ module.exports = (sequelize) => {
     playtime: {
       type: DataTypes.INTEGER,
       allowNull: true,
-    },
-    createdInDatabase: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true
     },
     background_image: {
       type: DataTypes.CHAR,

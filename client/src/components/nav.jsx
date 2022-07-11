@@ -6,7 +6,7 @@ import SearchBar from './searchBar';
 export default function Nav() {
   return (
     <div className={nav.nav}>
-      <Link to = "/">
+      <Link to = "/videogames">
         <span className={nav.button}> Home </span>
       </Link>
       <Link to = "/add">

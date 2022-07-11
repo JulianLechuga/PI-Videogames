@@ -7,11 +7,11 @@ a:visited { text-decoration: none; }
 a:hover { text-decoration: none; }
 
 .Card {
-    display:flex;
+    display:inline-flex;
     float:left;
     padding: 0 8px;
     justify-content: space-evenly;
-    width: 21.75%;
+    width: 22.16%;
     height: 285px;
     background-color: rgb(85, 74, 152);
     border-radius: 30px;
@@ -36,6 +36,9 @@ a:hover { text-decoration: none; }
 
 .Card img {
     width:100% ;
+    min-width: 200px;
+    min-height: 50px;
+    text-align: center;
     max-width: fit-content;
     height: fit-content;
     max-height: 145px;

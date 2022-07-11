@@ -1,3 +1,8 @@
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+
+
 .p{
     display:inline-flex;
     padding: 15px;
@@ -47,9 +52,34 @@
     display: inline-block;
 }
 
+.select{
+    position: relative;
+    display: inline;
+    font-size: x-large;
+    padding: 10px;
+    margin: 10px;
+    margin-left: 40px;
+    width: 47%;
+    border-radius: 5px;
+}
+
 .form label {
     position: absolute;
     display: flex;
+    font-size: larger;
+    font-weight: bold;
+    text-indent: 4px;
+    width: fit-content;
+    max-width: 1200px;
+    height: fit-content;  
+    padding: 10px;
+    margin: 10px;
+    text-align: start;
+    border-radius: 5px;
+}
+
+.form input {
+    display: inline-flex;
     font-size: larger;
     font-weight: bold;
     text-indent: 4px;
@@ -81,4 +111,70 @@
 .form input:hover{
     transition: all .3s ease-in-out;
     transform: scale(1.3);
+}
+
+.pagination{
+    display: inline-flex;
+    justify-content: space-around;
+    height: fit-content;
+    width: fit-content;
+    position: relative;
+    background-color: rgb(191, 113, 242);
+    border-radius: 25px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.number{
+    display: inline ;
+    justify-content: space-evenly;
+    font-size: x-large ;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: rgb(85, 74, 152);
+    color: rgb(233, 233, 233);
+    right: 15px;
+}
+
+.number a {
+    color: rgb(233, 233, 233);
+}
+
+.number:hover{
+    cursor: pointer;
+    background-color: rgb(36, 134, 225);
+    border-radius: 15px;
+    transition: all .2s ease-in-out;
+    transform: scale(1.3);
+}
+
+.landing{
+    display:inline-block;
+    position:relative;
+}
+
+.landingBtn{
+    position: absolute;
+    width: 15%;
+    bottom:27em;
+    left:27.8em;
+    background-color: rgb(191, 113, 242);
+    border-radius:1.5em;
+    color:white;
+    text-transform:uppercase;
+    padding:1em 1.5em;
+}
+
+.landingBtn:hover{
+    transition: all .3s ease-in-out;
+    transform: scale(1.5);
+}
+
+.landingImg{
+    display:inline-block;
+    position:relative;
+    width: 100%;
+    height: 100%;
+    position: relative;
 }

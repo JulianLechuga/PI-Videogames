@@ -33,11 +33,10 @@ const router = Router();
 
 router.get("/videogames", async (req, res, next) => {
     let name = req.query.name;
-    let videogames
+    let videogame
 
     if(name) {
-        videogamesAPI =  axios(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`)
-        videogames = Videogame.findAll({
+        videogame = await Videogame.findAll({
             include: Genre,
             where: {
                 name: {
@@ -48,9 +47,10 @@ router.get("/videogames", async (req, res, next) => {
                 ["name", "ASC"]
             ]
         })
-    } 
+        return res.json(videogame)
+    };
 
-    for (let i = 3498; i < 3499; i++) {
+    for (let i = 0; i < 30; i++) { //108
         try {
             let videogamesAPI =  `https://api.rawg.io/api/games/${i}?key=${API_KEY}`
             let videogamesData = await axios(videogamesAPI);
@@ -59,9 +59,9 @@ router.get("/videogames", async (req, res, next) => {
                 await Videogame.create({
                     id: finalData.id,
                     name: finalData.name,
-                    description: finalData.description,
+                    description: finalData.description.replaceAll("<p>","").replaceAll("</p>","").replaceAll("<br />","").replaceAll("<br/>","").replaceAll("<strong>","").replaceAll("</strong>","").replaceAll("<ul>","").replaceAll("</ul>","").replaceAll("<li>","").replaceAll("</li>","").replaceAll("[object Object]",""),
                     released: finalData.released ,
-                    platforms: finalData.platforms.map(p => p.name).join(", "),
+                    platforms: finalData.platforms.map(ps => ps.platform.name),
                     background_image: finalData.background_image,
                     rating: parseInt(finalData.rating),
                     metacritic: finalData.metacritic,
@@ -80,9 +80,8 @@ router.get("/videogames", async (req, res, next) => {
             continue
         };
     };
-    res.send("Momento gamer")
-    videogames = Videogame.findAll()
-    // res.json(videogames)
+    let videogames = await Videogame.findAll({include: Genre})
+    res.json(videogames)
 })
 
 router.get("/videogames/:id", async (req, res, next) => {
@@ -95,28 +94,44 @@ router.get("/videogames/:id", async (req, res, next) => {
         return res.json(game)
     } catch (error) {
         next(error)
-    }
+    };
 
 })
 
 router.post("/videogames", async (req, res, next) => {
-    let {name, releaseDate, rating, genre, metacritic, platforms, image, playtime} = req.body
+    let {name, released, rating, genre, metacritic, platforms, background_image, playtime} = req.body
+    let genres
     try {
         let newGame = await Videogame.create({
             name,
-            slug: name.toLowerCase(),
-            releaseDate,
+            released,
             platforms: [platforms],
-            playtime: playtime,
+            playtime: Number(playtime),
             rating: Number(rating),
             metacritic: Number(metacritic),
-            genre: [genre],
-            image,
+            background_image,
         })
-        res.status(201).json(newGame)
+
+        if (typeof genre === "object") {
+            for (let i = 0; i < genre.length; i++) {
+                genres = await Genre.findAll({where: {name:  genre[i] } })
+                await newGame.addGenres(genres)
+            }
+        } else {
+            genres = await Genre.findAll({where: {name:  genre } })
+            await newGame.addGenres(genres)
+        }
+
+        let fullGame = await Videogame.findOne({
+            include: Genre,
+            where: {
+                name: name
+            }})
+
+        res.status(201).json(fullGame)
     } catch (error) {
         next(error)
-    }
+    };
 });
 
 router.get("/genres", async (req, res, next) => {
@@ -126,8 +141,8 @@ router.get("/genres", async (req, res, next) => {
         res.json(newGenre)
     } catch (error) {
         next(error)
-    }
-})
+    };
+});
 
 
 module.exports = router;
