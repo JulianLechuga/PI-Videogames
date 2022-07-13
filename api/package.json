@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon -L",
-    "test": "mocha -w ./tests/**/*.spec.js"
+    "test": "jest"
   },
   "author": "Henry",
   "license": "ISC",
@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "body-parser": "^1.19.0",
+    "chai-http": "^4.3.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "jest": "^28.1.2",
     "mocha": "^8.2.1",
     "nodemon": "^2.0.6",
     "supertest": "^6.0.1",

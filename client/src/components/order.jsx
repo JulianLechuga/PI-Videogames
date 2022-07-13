@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux"
 import { A_Z, base, ratingAsc, ratingDesc, Z_A, library, userMade, Action, Puzzle, Indie, Adventure, Arcade, RPG, Strategy, Shooter, Casual, Simulation, Racing, Platformer, Massively_Multiplayer, Sports, Fighting, Board_Games, Card, Educational, Family} from "../constants/sort"
 import { sort, filter } from "../store/actions"
+import main from "./cards.module.css"
 
 export default function Order() {
     let dispatch = useDispatch()
@@ -15,9 +16,9 @@ export default function Order() {
 
     return (
         <div>
-        <button type="submit" value= {base} onClick={onSelectChange}>Reset filters</button> 
+        <button className={main.orderBtn} type="submit" value= {base} onClick={onSelectChange}>Reset filters</button> 
 
-        <select onChange={onSelectChange}>
+        <select onChange={onSelectChange} className={main.select}>
             <option value={base}>Order by</option>
             <option value={A_Z} >A-Z</option>
             <option value={Z_A} >Z-A</option>
@@ -25,7 +26,7 @@ export default function Order() {
             <option value={ratingDesc} > Rating 5 - 0 </option>
         </select>
 
-        <select onChange={onSelectFilter}>
+        <select onChange={onSelectFilter} className={main.select}>
             <option value={base}defaultValue>Genre</option>
             <option value={Action} >Action</option>
             <option value={Indie} >Indie</option>
@@ -48,7 +49,7 @@ export default function Order() {
             <option value={Card} >Card</option>
         </select>
 
-        <select onChange={onSelectFilter}>
+        <select onChange={onSelectFilter} className={main.select}>
         <option value={base} defaultValue>Origin</option>
             <option value={library}>Library</option>
             <option value={userMade} >User-Created</option>

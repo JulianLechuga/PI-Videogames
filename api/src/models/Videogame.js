@@ -34,7 +34,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     rating: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.CHAR,
       allowNull: false,
       validate: {
         min: 0,
@@ -54,9 +54,14 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     background_image: {
-      type: DataTypes.CHAR,
+      type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: "http://pm1.narvii.com/6295/29d5c8404945e4e2490e58cc03bbb1397261dad3_00.jpg"
+      defaultValue:`https://cdn.pixabay.com/photo/2020/05/02/07/32/gaming-5120169_960_720.jpg`
+    },
+    createdInDB: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: true
     }
   }, {timestamps: false});
 };

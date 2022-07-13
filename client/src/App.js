@@ -1,4 +1,5 @@
 import './App.css';
+import main from "./components/various.module.css"
 import Videogames from './components/videogames';
 import {Route, Switch} from "react-router-dom"
 import Order from './components/order';
@@ -13,23 +14,30 @@ import { get_Genres, get_Videogames } from "../src/store/actions"
 import LandingPage from './components/landing';
 
 function App() {
-  let [vgs, setVgs] = useState([]);
+  let genres = useSelector(state => state.genres)
+  let [vgs] = useState([]);
   vgs = useSelector(state => state.filteredVideogames)
   let [current, setCurrent] = useState(1);
-  let [vgsPerPage] = useState(12);
+  let [vgsPerPage] = useState(16);
+  let [load] = useState(false)
 
   let dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(get_Genres())
-    dispatch(get_Videogames())
+    if(!genres.length){
+      dispatch(get_Genres())
+    }
+    if (!vgs.length) {
+      dispatch(get_Videogames())
+    }
   }, [])
+
+  console.log(genres)
 
   let indexOfLastPost = current * vgsPerPage;
   let indexOfFirstPost = indexOfLastPost - vgsPerPage;
   let currentVgs = vgs.slice(indexOfFirstPost,indexOfLastPost)
   let paginate = (pageNumber) => setCurrent(pageNumber);
-
 
   return (
     <div className="App">
@@ -53,12 +61,12 @@ function App() {
         <Route path="/videogames">
           <Nav/>
           <Order/>
-          <Videogames vgs={currentVgs}/>
+          <Videogames load={load} vgs={currentVgs}/>
           <Pagination vgsPerPage={vgsPerPage} totalVgs={vgs.length} paginate={paginate}/>
         </Route>
 
         
-        <Route path="/">
+        <Route path="/" className={main.landing}>
           <LandingPage/>
         </Route>
         

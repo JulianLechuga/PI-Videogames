@@ -1,11 +1,11 @@
 .App {
   text-align: center;
   background-image: url("./assets/main-background.gif");
-  min-height: 100%;
   width: 100%;
+  min-height: 100%;
   height: fit-content;
   background-repeat: no-repeat;
   background-size:cover;
-  position: fixed;
+  position:absolute;
+  background-position: center;
 }
-

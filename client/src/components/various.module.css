@@ -2,19 +2,44 @@ a:link { text-decoration: none; }
 a:visited { text-decoration: none; }
 a:hover { text-decoration: none; }
 
-
-.p{
-    display:inline-flex;
+.mainDiv{
+    color: white;
+    font-size: larger;
+    display:inline-block;
     padding: 15px;
-    justify-content: space-evenly;
-    width: 25.75%;
-    height: fit-content;
+    justify-content: space-around;
     text-align: center;
+    width: 50%;
+    height: fit-content;
     background-color: rgb(85, 74, 152);
     border-radius: 30px;
     margin: 20px;
     min-height: 250px;
     transition: all .2s ease-in-out;
+    box-shadow:0 0 5px #9027f1, 0 0 15px #9027f1, 0 0 20px #9027f1, 0 0 40px #9027f1, 0 0 60px #0066ff, 0 0 10px #177eed, 0 0 98px #8cf5ff75;
+}
+
+.mainDiv:hover{
+    transition: all .2,7s ease-in-out;
+    transform: scale(1.1);
+    border: rgb(255, 255, 255) solid 2px;
+}
+
+.p{
+    color: white;
+    display:inline-block;
+    font-size: larger;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 20px;
+    justify-content: space-evenly;
+    width: 65%;
+    height: fit-content;
+    text-align: center;
+    background-color: rgb(85, 74, 152);
+    border-radius: 30px;
+    margin: 18px;
+    transition: all .2s ease-in-out;
+    box-shadow:0 0 5px #9027f1, 0 0 15px #9027f1, 0 0 20px #9027f1, 0 0 40px #9027f1, 0 0 60px #0066ff, 0 0 10px #177eed, 0 0 98px #8cf5ff75;
 }
 
 .p:hover {
@@ -114,19 +139,20 @@ a:hover { text-decoration: none; }
 }
 
 .pagination{
-    display: inline-flex;
-    justify-content: space-around;
-    height: fit-content;
+    display: inline-block;
+    text-align: center;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
     width: fit-content;
     position: relative;
     background-color: rgb(191, 113, 242);
     border-radius: 25px;
     padding: 5px;
-    margin-bottom: 10px;
 }
 
 .number{
-    display: inline ;
+    display: inline-flex ;
     justify-content: space-evenly;
     font-size: x-large ;
     margin: 10px;
@@ -152,13 +178,51 @@ a:hover { text-decoration: none; }
 .landing{
     display:inline-block;
     position:relative;
+    background-color: black;
 }
 
+
+.landingTitle{
+    position:fixed;
+    text-align: auto;
+    font-size:100px;
+    width:1%;
+    top:9%;
+    left:2%;
+    font-style: italic;
+    font-weight: bolder;
+    color: white;
+    animation: zoomout 10s ease 500ms forwards;
+    text-align: center;
+    animation: blink 12s infinite;
+}
+
+  @keyframes blink {
+    20%,
+    24%,
+    55% {
+      color: #111;
+      text-shadow: none;
+    }
+    0%,
+    19%,
+    21%,
+    23%,
+    25%,
+    54%,
+    56%,
+    100% {
+    text-shadow: 0 0 5px #9027f1, 0 0 15px #9027f1, 0 0 20px #9027f1, 0 0 40px #9027f1, 0 0 60px #0066ff, 0 0 10px #177eed, 0 0 98px #8cf5ff75;
+      color: #ffffff;
+    }
+  }
+  
+
 .landingBtn{
-    position: absolute;
-    width: 15%;
-    bottom:27em;
-    left:27.8em;
+    position: fixed;
+    width: 30%;
+    top:60%;
+    left:2%;
     background-color: rgb(191, 113, 242);
     border-radius:1.5em;
     color:white;
@@ -168,13 +232,59 @@ a:hover { text-decoration: none; }
 
 .landingBtn:hover{
     transition: all .3s ease-in-out;
-    transform: scale(1.5);
+    transform: scale(1.1)
 }
 
-.landingImg{
+.landingImg {
+    background-image: url("../assets/purple1.jpg");
     display:inline-block;
     position:relative;
-    width: 100%;
-    height: 100%;
-    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    height: fit-content;
+    max-height: 100%;
+    position: static;
 }
+
+.loading{
+    position: relative;
+    top: 200px;
+    height: 400px;
+}
+
+.loadingError {
+    color: white;
+    display:none;
+    position: absolute;
+    top: 30%;
+    left: 27.3%;
+    padding: 0 8px;
+    justify-content: space-evenly;
+    align-content: center;
+    text-align: center;
+    width: 40%;
+    height: fit-content;
+    padding: 20px;
+    padding-top: 15px;
+    background-color: rgb(85, 74, 152);
+    border-radius: 30px;
+    margin: 20px;
+    min-height: 250px;
+    transition: all .2s ease-in-out;
+}
+
+.loadingError li{
+    margin: 10px;
+    padding: 10px;
+}
+
+.footerImg {
+    display: inline-flex;
+    align-items: center;
+    justify-content:space-around;
+    margin: 5px;
+    height: 50px;
+    width: 50px;
+    cursor: pointer	;
+}
+

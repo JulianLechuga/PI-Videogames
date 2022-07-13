@@ -23,7 +23,7 @@ export function search_Videogames(search){
 export function get_Genres(){
     return async function (dispatch){
         await axios (`http://localhost:3001/genres`)
-        .then(res => dispatch ({type: FETCH_GENRES, payload: res}))
+        .then(res => dispatch ({type: FETCH_GENRES, payload: res.data}))
     }
 }
 

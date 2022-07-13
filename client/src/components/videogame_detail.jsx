@@ -7,15 +7,18 @@ import cards from "./cards.module.css"
 export default function GameDetail() {
 
     let [videogame, setVideogame] = useState(null)
+    let [load, setLoad] = useState(false)
 
+    console.log(videogame)
     let {id} = useParams()
 
     useEffect(() => {
+        setLoad(true)
         axios.get(`http://localhost:3001/videogames/${id}`)
         .then ((game) => {
             setVideogame(game.data)
         })
-
+        setLoad(true)
         return () => {
             setVideogame(null)
         }
@@ -23,17 +26,23 @@ export default function GameDetail() {
 
     return <div>
             {
-            
-                videogame ? 
+                videogame && load ? 
                 <div className={cards.detail}>
                         <h1> {videogame.name} </h1>
                         <img src={videogame.background_image} alt="Not found :(" />
-                        {videogame.description ? <h3> {videogame.description} </h3> : null}
+                        {videogame.description ? <h3> Description: <br/> {videogame.description.replaceAll("<p>","").replaceAll("</p>","").replaceAll("<br />","").replaceAll("<br/>","").replaceAll("<strong>","").replaceAll("</strong>","").replaceAll("<ul>","").replaceAll("</ul>","").replaceAll("<li>","").replaceAll("</li>","").replaceAll("[object Object]","")} </h3> : null}
                         <div>
-                            <h4> Genres: {videogame.genres.map(g => g.name).join(", ")} </h4>
-                            <h4> Release date: {videogame.released} </h4>
-                            <h4> Platforms: {videogame.platforms.join(", ")} </h4>
-                            <h4> Rating: {videogame.rating}/5 </h4>
+                            <h3> Genres: {videogame.genres.map(g => g.name).join(", ")} </h3>
+                            <h3> Release date: {videogame.released} </h3>
+                            <h3> Platforms: {videogame.createdInDB ? videogame.platforms:  videogame.platforms.map(p => p.platform.name).join(", ")} </h3>
+                            <h3 className={cards.rating}> Rating: {videogame.rating} / 5 
+                                    {Math.round(videogame.rating) === 0 && <div><span className={cards.offstars}> ★ ★ ★ ★ ★ </span></div>} 
+                                    {Math.round(videogame.rating) === 1 && <div><span className={cards.stars}> ★  </span> <span className={cards.offstars}> ★ ★ ★ ★ </span></div>}
+                                    {Math.round(videogame.rating) === 2 && <div><span className={cards.stars}> ★ ★  </span> <span className={cards.offstars}> ★ ★ ★ </span></div>}
+                                    {Math.round(videogame.rating) === 3 && <div><span className={cards.stars}> ★ ★ ★  </span> <span className={cards.offstars}> ★ ★ </span></div>}
+                                    {Math.round(videogame.rating) === 4  && <div><span className={cards.stars}> ★ ★ ★ ★ </span> <span className={cards.offstars}> ★ </span></div>}
+                                    {videogame.rating === 5 && <div><span className={cards.stars}> ★ ★ ★ ★ ★ </span></div>}
+                            </h3>
                             {videogame.metacritic ? <h4> Metacritic Score: {videogame.metacritic}/100</h4> : null } {/*  <h5> Metacritic: Not enough Metacritic reviews </h5>} */}
                             {videogame.playtime ? <h4> Average playtime: {videogame.playtime} hours</h4> : null } {/*  <h5> Average playtime: Not enough reviews to calculate</h5>} */}
                         </div>
@@ -41,7 +50,6 @@ export default function GameDetail() {
                 : 
                 <div className="temp">
                         <img src={loading} alt="loading..." />
-                        {setTimeout(function() {document.getElementsByClassName("temp").innerHTML = "Not found"}, 2500)} 
                 </div>
             }
 

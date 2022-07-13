@@ -11,11 +11,7 @@ module.exports = (sequelize) => {
       primaryKey: true
     },
     name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    slug: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(DataTypes.ENUM("Action", "Puzzle", "Indie", "Adventure", "Arcade", "RPG", "Strategy", "Shooter", "Casual", "Simulation", "Racing", "Platformer", "Massively_Multiplayer", "Sports", "Fighting", "Board_Games", "Card", "Educational", "Family")),
       allowNull: false,
     },
     games_count: {

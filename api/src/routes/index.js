@@ -32,94 +32,102 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 router.get("/videogames", async (req, res, next) => {
+    let videogamesAPI =  await axios(`https://api.rawg.io/api/games?key=${API_KEY}`)
     let name = req.query.name;
     let videogame
 
     if(name) {
-        videogame = await Videogame.findAll({
-            include: Genre,
-            where: {
-                name: {
-                    [Op.iLike]: "%" + name + "%"
-                }
-            },
-            order: [
-                ["name", "ASC"]
-            ]
-        })
-        return res.json(videogame)
-    };
-
-    for (let i = 0; i < 30; i++) { //108
         try {
-            let videogamesAPI =  `https://api.rawg.io/api/games/${i}?key=${API_KEY}`
-            let videogamesData = await axios(videogamesAPI);
-            finalData = await videogamesData.data
-            if (!finalData.detail) {
-                await Videogame.create({
-                    id: finalData.id,
-                    name: finalData.name,
-                    description: finalData.description.replaceAll("<p>","").replaceAll("</p>","").replaceAll("<br />","").replaceAll("<br/>","").replaceAll("<strong>","").replaceAll("</strong>","").replaceAll("<ul>","").replaceAll("</ul>","").replaceAll("<li>","").replaceAll("</li>","").replaceAll("[object Object]",""),
-                    released: finalData.released ,
-                    platforms: finalData.platforms.map(ps => ps.platform.name),
-                    background_image: finalData.background_image,
-                    rating: parseInt(finalData.rating),
-                    metacritic: finalData.metacritic,
-                    playtime: parseInt(finalData.playtime),
-                })
-            let genreMap = finalData.genres.map(g => g.id)
-            if ( typeof genreMap[0] === "number") {
-                for (let j = 0; j < genreMap.length; j++) {
-                    let toSet = await Videogame.findByPk(finalData.id)
-                    let genreBdd = await Genre.findByPk(genreMap[j])
-                    await toSet.addGenres(genreBdd)
+            let videogameDB = await Videogame.findAll({
+                include: Genre,
+                where: {
+                    name: {
+                        [Op.iLike]: "%" + name + "%"
                     }
-                }
+                },
+                order: [
+                    ["name", "ASC"]
+                ]
+            })
+            let videogameAPI = await axios(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`)
+            if (videogameDB.length) {
+                videogame = [videogameDB.concat(videogameAPI.data.results)]
+            } else {
+                videogame = videogameAPI.data.results
             }
+            console.log(videogame)
+            return res.status(200).json(videogame)
         } catch (error) {
-            continue
+            console.log(error)
+        }
+    } else {
+        try {
+            let localDb =  await Videogame.findAll({include: Genre})
+            let subsequent = videogamesAPI.data.next
+            let subsequentReq = await axios(subsequent)
+            let subsequentReq2 =  await axios(subsequentReq.data.next)
+            let subsequentReq3 =  await axios(subsequentReq2.data.next)
+            let subsequentReq4 =  await axios(subsequentReq3.data.next)
+            let subsequentReq5 =  await axios(subsequentReq4.data.next)
+            videogame = [...localDb.concat(videogamesAPI.data.results).concat(subsequentReq.data.results).concat(subsequentReq2.data.results).concat(subsequentReq3.data.results).concat(subsequentReq4.data.results).concat(subsequentReq5.data.results)] ;
+            return res.status(200).json(videogame)
+        } catch (error) {
+            next(error)
         };
-    };
-    let videogames = await Videogame.findAll({include: Genre})
-    res.json(videogames)
+        let videogames = await Videogame.findAll({include: Genre})
+        return res.json(videogames)
+    }
 })
 
 router.get("/videogames/:id", async (req, res, next) => {
     let id = req.params.id
     let game
+
     try {
-        game = await Videogame.findByPk(id, {
-            include: Genre
-        })
-        return res.json(game)
+        if (id > 200000) {
+            game = await Videogame.findByPk(id, {
+                include: Genre
+            })
+        } else {
+            let gameSearch = await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)
+            game = gameSearch.data
+        }
+        return res.status(200).json(game)
     } catch (error) {
+        console.log()
         next(error)
     };
 
 })
 
 router.post("/videogames", async (req, res, next) => {
-    let {name, released, rating, genre, metacritic, platforms, background_image, playtime} = req.body
-    let genres
+    let {name, released, rating, genres, description, metacritic, platforms, background_image, playtime} = req.body
+    let genresFind
     try {
+
+        if(!name || !released || !rating || !genres || !platforms){
+            return res.status(400).json({error: "Missing key values"})
+        }
+
         let newGame = await Videogame.create({
             name,
             released,
-            platforms: [platforms],
-            playtime: Number(playtime),
-            rating: Number(rating),
-            metacritic: Number(metacritic),
+            platforms: platforms,
+            description,
+            playtime: playtime,
+            rating: rating,
+            metacritic: metacritic,
             background_image,
         })
 
         if (typeof genre === "object") {
             for (let i = 0; i < genre.length; i++) {
-                genres = await Genre.findAll({where: {name:  genre[i] } })
-                await newGame.addGenres(genres)
+                genresFind = await Genre.findAll({where: {name:  genres[i] } })
+                await newGame.addGenres(genresFind)
             }
         } else {
-            genres = await Genre.findAll({where: {name:  genre } })
-            await newGame.addGenres(genres)
+            genresFind = await Genre.findAll({where: {name:  genres } })
+            await newGame.addGenres(genresFind)
         }
 
         let fullGame = await Videogame.findOne({

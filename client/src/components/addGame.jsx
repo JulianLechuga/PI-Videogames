@@ -7,50 +7,61 @@ import { useHistory } from "react-router-dom";
 export default function AddGame() {
    let history = useHistory();
    let [check, setCheck] = useState([]);
-   let arr = [];
+   let [plats, setPlats] = useState([]);
+   let genArr = [];
+   let platArr = [];
     
    let [videogame, setVideogame] = useState({
         name: "",
-        genre: "",
+        genres: "",
         released: "",
         rating: "",
         metacritic: "",
         playtime: "",
+        description:"",
         platforms: "",
-        background_image: "",
+        background_image: undefined,
      });
 
    let [error, setError] = useState({
         name: '',
-        genre: "",
+        genres: "",
         rating: "",
         released: "",
         platforms:"",
-        metacritic: "",
-        playtime: "",
      });
 
-   function setData(e) {
+   function setGenre(e) {
       if (!check.includes(e.target.value)) {
-         arr.push(e.target.value)
-         setCheck([...check.concat(arr)])
+         genArr.push(e.target.value)
+         setCheck([...check.concat(genArr)])
       } else {
          setCheck([...check].filter(j => j !== e.target.value))
-      }
-     }
+      };
+   };
+
+   function setPlatform(e) {
+      if (!plats.includes(e.target.value)) {
+         platArr.push(e.target.value)
+         setPlats([...plats.concat(platArr)])
+      } else {
+         setPlats([...plats].filter(j => j !== e.target.value))
+      };
+   }; 
 
    function onInputChange(e) {
         e.preventDefault()
         setVideogame({
             ...videogame,
             [e.target.name]: e.target.value,
-            genre: check,
+            platforms: plats,
+            genres: check,
             [e.target.released]: e.target.value,
             [e.target.rating]: e.target.value,
             [e.target.metacritic]: e.target.value,
             [e.target.playtime]: e.target.value,
-            [e.target.platforms]: e.target.value,
-            [e.target.background_image]: e.target.value, 
+            [e.target.description]: e.target.value,
+            [e.target.background_image]: e.target.value,
         })
     }
         
@@ -63,6 +74,11 @@ export default function AddGame() {
               ...error,
               name: 'Name cannot be blank'
            })
+         } else if (!/\S/.test(videogame.name)) {
+            setError(error = {
+              ...error,
+              name: 'Name cannot be an empty space'
+           })
         } else {
             setError(error = {
               ...error,
@@ -72,12 +88,12 @@ export default function AddGame() {
         if (!check.length) {
             setError(error = {
                 ...error,
-                genre: 'Must select at least one genre'
+                genres: 'Must select at least one genre'
              })
          } else {
             setError(error = {
                ...error,
-               genre: ""
+               genres: ""
             })
          }
         if (videogame.released === '') {
@@ -107,12 +123,7 @@ export default function AddGame() {
               rating: ""
            })
         }
-        if (typeof e.target.platforms.value !== "string") {
-            setError(error = {
-               ...error,
-               platforms: 'Platforms can only be text'
-            })
-         } else if (!e.target.platforms.value.length) {
+        if (!check.length) {
             setError(error = {
                 ...error,
                 platforms: 'Must introduce at least one platform'
@@ -123,15 +134,17 @@ export default function AddGame() {
                platforms: ""
             })
          }
-         if (!e.target.name.value || !e.target.released.value || !e.target.platforms.value || !e.target.rating.value) {
+         if (!/\S/.test(videogame.name) || !e.target.name.value || !e.target.released.value || !check.length || !plats.length || !e.target.rating.value) {
             alert("Key values are missing") 
         }  else { 
+            console.log(videogame)
             axios.post(`http://localhost:3001/videogames`, videogame)
             .then(() => {})
              alert("Videogame added succesfully") 
              history.push(`/videogames`);
-        }
-    }
+             window.location.reload(true);
+        };
+    };
 
     return (
         <form action="" onSubmit={onSubmit} className={main.form}>
@@ -142,8 +155,8 @@ export default function AddGame() {
             <br />
             <div className={main.checkDiv}>
                <label htmlFor="">*Genres: </label>
-                  <select className = {main.select} onChange={setData}>
-                     <option value="" defaultValue>Genre</option>
+                  <select className = {main.select} onChange={setGenre}>
+                     <option value="" defaultValue>Genres</option>
                      <option value={Action} >Action</option>
                      <option value={Indie} >Indie</option>
                      <option value={Adventure} >Adventure</option>
@@ -163,8 +176,8 @@ export default function AddGame() {
                      <option value={Board_Games} >Board Games</option>
                      <option value={Educational} >Educational</option>
                      <option value={Card} >Card</option>
-            </select>
-            {error.genre && <p style={{ 'color': 'red' }}>{error.genre}</p>}
+                  </select>
+            {error.genres && <p style={{ 'color': 'red' }}>{error.genres}</p>}
             {check && <h3>{check.join(" - ")}</h3>}
             </div>
 
@@ -172,22 +185,38 @@ export default function AddGame() {
             <input className={main.formInputs} placeholder="YYYY/MM/DD" onChange={onInputChange} name= "released" type="text" value= {videogame.released}/>
             {error.released && <p style={{ 'color': 'red' }}>{error.released}</p>}
             <br />
-            <label htmlFor="">*Rating: </label>
-            <input className={main.formInputs} placeholder="0 / 5" onChange={onInputChange} name= "rating" type="text" value= {videogame.rating}/>
+            <label htmlFor="">*Rating: </label>          
+            <input className={main.formInputs} placeholder="0 / 5" onChange={onInputChange} name= "rating" type="number" value= {videogame.rating} min="0" max="5"/>
             {error.rating && <p style={{ 'color': 'red' }}>{error.rating}</p>}
             <br />
-            <label htmlFor="">*Platforms: </label>
-            <input className={main.formInputs} placeholder="Platforms..." onChange={onInputChange} name= "platforms" type="text" value= {videogame.platforms}/>
-            {error.platforms && <p style={{ 'color': 'red' }}>{error.platforms}</p>}
-            <br />
             <label htmlFor="">Metacritic score: </label>
-            <input className={main.formInputs} placeholder="0-100" onChange={onInputChange} name= "metacritic" type="text" value= {videogame.metacritic}/>
+            <input className={main.formInputs} placeholder="0-100" onChange={onInputChange} name= "metacritic" type="number" value= {videogame.metacritic} min="0" max="100"/>
+            <br />
+            <label htmlFor="">*Platforms: </label>
+            <select className = {main.select} onChange={setPlatform}>
+                     <option value="" defaultValue>Platforms</option>
+                     <option value={"PC"} > PC </option>
+                     <option value={"PS5"} >PS5 </option>
+                     <option value={"PS4"} >PS4 </option>
+                     <option value={"PS3"} >PS3 </option>
+                     <option value={"XBOX Series X"} >XBOX Series X </option>
+                     <option value={"XBOX One"} >XBOX One </option>
+                     <option value={"XBOX 360"} >XBOX 360 </option>
+                     <option value={"Nintendo Switch"} >Nintendo Switch </option>
+                     <option value={"Nintendo WiiU"} >Nintendo WiiU </option>
+                     <option value={"Nintendo Wii"} >Nintendo Wii </option>
+            </select>
+            {error.platforms && <p style={{ 'color': 'red' }}>{error.platforms}</p>}
+            {plats && <h3>{plats.join(" - ")}</h3>}
+            
+            <label htmlFor="">Description: </label>
+            <input className={main.formInputs} placeholder="Game's description" onChange={onInputChange} name= "description" type="text" value= {videogame.description}/>
             <br />
             <label htmlFor="">Playtime: </label>
             <input className={main.formInputs} placeholder="Playtime..." onChange={onInputChange} name= "playtime" type="text" value= {videogame.playtime}/>
             <br />
             <label htmlFor="">Image URL: </label>
-            <input className={main.formInputs} onChange={onInputChange} placeholder="URL..." name= "background_image" type="url" value= {videogame.background_image}/>
+            <input className={main.formInputs} onChange={onInputChange} placeholder="URL..." name= "background_image" type="text" value= {videogame.background_image}/>
             <br />
             <input type="submit" value= "Add" onSubmit={onSubmit}/>
             <h4> *Required fields </h4>

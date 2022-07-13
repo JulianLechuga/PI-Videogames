@@ -1,48 +1,34 @@
 import various from "./various.module.css"
-import random from "../assets/why.jpg"
-import random2 from "../assets/why2.jpg"
-import random3 from "../assets/why3.jpg"
+import github from '../assets/github_logo.png'
+import linkedIn from'../assets/linked_logo.png'
 
 export default function About() {
     return (
         <div>
+            <h2 className={various.p}>
+                This small section is dedicated to giving a bit of context regarding this website and a short introduction about myself.
+            </h2>
             <div className={various.p}>
-                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro molestias atque voluptas laudantium quis totam rem? Ut quibusdam ab iste.
+                As Henry's bootcamps begin to come to an end, all the students who manage to pass all of the exames presented to them are given an individual project to work on. <br />
+                In my case, this was my project. A videogame based library-esque website.
+                While still making use of most of the skills taught to us by Henry's teacher, this project required a lot of investigation and work to fulfill all the requirements necessary to pass.
+                Even so, I still felt like it was an excellent opportunity  to expand upon and develop my skills with technologies like React, Redux, Express, Sequelize and Postgres
             </div>
             <div className={various.p}>
-                    Dori me
-                    Interimo ayapare, dorime
-                    Ameno, ameno
-                    Latire, latiremo
-                    Dori me
-                    Ameno
-                    Omenare imperavi ameno
-                    Dimere, dimere matiro
-                    Matiremo, ameno
-                    Omenare imperavi emunari
-                    Ameno
-                    Omenare imperavi emunari
-                    Ameno
-                    Ameno dore
-                    Ameno dori me
-                    Ameno dori me
-                    Ameno dom
-                    Dori me reo
-                    Ameno dori me
-                    Ameno dori me
-                    Dori me 
+            And as for a bit about myself. My name is Julian Lechuga and I am a student at Henry's bootcamp, currently in the final stages and acting as a teaching assistant.
+                While having only picked up programming recently, I still managed to get the hang of it rather quickly. I deeply enjoy the challenges that were presented to me during Henry's bootcamp. <br />
+                I feel that my ease of picking up and learning new topics combined with Henry's extremely packed schedule managed to boost my learning far greater than I could have ever done by myself. <br />
+                As the end of my stay on this programming course nears, I decided to become a teaching assistant, so I could give back a bit of the help and support that my own teaching assistants gave me through the course. <br />  
             </div>
-            <div className={various.p}>
-                    What the fuck did you just fucking say about me, you little bitch? I'll have you know I graduated top of my class in the Navy Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. 
-                    I am trained in gorilla warfare and I'm the top sniper in the entire US armed forces. 
-                    You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. 
-                    You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. 
-                    You're fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little "clever" comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn't, you didn't, and now you're paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo.
-            </div>
-            <div className={various.testDiv}>
-                    <img className={various.test} src={random} alt="" />
-                    <img className={various.test2} src={random2} alt="" />
-                    <img className={various.test3} src={random3} alt="" />
+
+            <div className={various.mainDiv}>
+                <h1>¡Thank you for reading all of this 😁!</h1>
+
+                <h2> I hope you have a great day</h2>
+
+                <h4>Here are some links if you'd like to contact me</h4>
+                <a href="https://github.com/JulianLechuga"><img className={various.footerImg} src={github} alt="Github" /> </a>
+                <a href="https://www.linkedin.com/in/julian-lechuga-28a782156/"><img className={various.footerImg} src={linkedIn} alt="LinkedIn" /> </a>
             </div>
         </div>
     );

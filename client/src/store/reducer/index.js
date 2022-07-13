@@ -10,6 +10,7 @@ const initialState = {
     export default function reducer(state=initialState, action){
         switch(action.type){
             case FETCH_VIDEOGAMES:
+                
                 return {
                     ...state,
                     videogames: action.payload,
@@ -21,6 +22,7 @@ const initialState = {
                     genres: action.payload,
                 }    
             case SEARCH_VIDEOGAMES:
+                console.log(action.payload)
                 return {
                     ...state,
                     filteredVideogames: action.payload,
@@ -33,7 +35,7 @@ const initialState = {
                     }
                 }
                 if (action.payload === "ratingAsc"){
-                    let ratingOrder =  [...state.videogames].sort((a, b) => {
+                    let ratingOrder =  [...state.filteredVideogames].sort((a, b) => {
                         if (a.rating < b.rating) {
                             return  -1
                         }
@@ -48,7 +50,7 @@ const initialState = {
                     }    
                 }
                 if (action.payload === "ratingDesc"){
-                    let ratingOrder =  [...state.videogames].sort((a, b) => {
+                    let ratingOrder =  [...state.filteredVideogames].sort((a, b) => {
                         if (a.rating < b.rating) {
                             return  1
                         }
@@ -62,7 +64,7 @@ const initialState = {
                         filteredVideogames: ratingOrder
                     }    
                 }
-                let ordered = [...state.videogames].sort((a, b) => {
+                let ordered = [...state.filteredVideogames].sort((a, b) => {
                     if (a.name < b.name) {
                         return action.payload === A_Z ? -1 : 1;
                     }
@@ -97,7 +99,8 @@ const initialState = {
                     }    
                 }
                 if(action.payload.length) {
-                    let filtro = state.videogames.filter(v => v.genres.find(e=> e.name === action.payload))
+                    let filtro = state.videogames.filter(v => v.genres.find(g => g.name === action.payload))
+                    console.log(state.videogames.filter(v => v.genres.find(g => g.name === action.payload)))
                     return {
                         ...state,
                         filteredVideogames: filtro
