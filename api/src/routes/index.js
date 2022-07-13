@@ -83,8 +83,8 @@ router.get("/videogames/:id", async (req, res, next) => {
     let id = req.params.id
     let game
 
-    try {
-        if (id > 200000) {
+    try {        
+        if (id > 20000000) { 
             game = await Videogame.findByPk(id, {
                 include: Genre
             })

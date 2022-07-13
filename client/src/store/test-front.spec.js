@@ -27,7 +27,7 @@ describe('Reducer', () => {
             "genres": ["Action", "Shooter"],
             "released": "2015-08-04",
             "rating": 4,
-            "platforms": ["PC", "PS5", "XBOX360s"],
+            "platforms": ["PC", "PS5", "XBOX360"],
           },
     ]
     const genres =[

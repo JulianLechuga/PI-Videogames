@@ -5,28 +5,25 @@ import loading from "../assets/loading.gif";
 import cards from "./cards.module.css"
 
 export default function GameDetail() {
-
     let [videogame, setVideogame] = useState(null)
-    let [load, setLoad] = useState(false)
 
-    console.log(videogame)
     let {id} = useParams()
 
     useEffect(() => {
-        setLoad(true)
         axios.get(`http://localhost:3001/videogames/${id}`)
         .then ((game) => {
             setVideogame(game.data)
         })
-        setLoad(true)
         return () => {
             setVideogame(null)
         }
     }, [])
 
+    console.log(videogame)
+
     return <div>
             {
-                videogame && load ? 
+                videogame ? 
                 <div className={cards.detail}>
                         <h1> {videogame.name} </h1>
                         <img src={videogame.background_image} alt="Not found :(" />
@@ -43,8 +40,8 @@ export default function GameDetail() {
                                     {Math.round(videogame.rating) === 4  && <div><span className={cards.stars}> ★ ★ ★ ★ </span> <span className={cards.offstars}> ★ </span></div>}
                                     {videogame.rating === 5 && <div><span className={cards.stars}> ★ ★ ★ ★ ★ </span></div>}
                             </h3>
-                            {videogame.metacritic ? <h4> Metacritic Score: {videogame.metacritic}/100</h4> : null } {/*  <h5> Metacritic: Not enough Metacritic reviews </h5>} */}
-                            {videogame.playtime ? <h4> Average playtime: {videogame.playtime} hours</h4> : null } {/*  <h5> Average playtime: Not enough reviews to calculate</h5>} */}
+                            {videogame.metacritic ? <h4> Metacritic Score: {videogame.metacritic}/100</h4> : null }
+                            {videogame.playtime ? <h4> Average playtime: {videogame.playtime} hours</h4> : null }
                         </div>
                 </div>  
                 : 

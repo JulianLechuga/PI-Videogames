@@ -83,6 +83,10 @@ a:hover { text-decoration: none; }
 .detail img {
   width: fit-content;
   max-width: 950px;
+  min-height: 50px;
+  min-width: 180px;
+  text-align: center;
+  justify-content: center;
   height: auto;
   max-height: 1050px;
   border: rgb(255, 255, 255) solid 2px;

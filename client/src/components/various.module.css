@@ -254,7 +254,8 @@ a:hover { text-decoration: none; }
 
 .loadingError {
     color: white;
-    display:none;
+    display: inline-block;
+    visibility: hidden;
     position: absolute;
     top: 30%;
     left: 27.3%;
@@ -266,16 +267,23 @@ a:hover { text-decoration: none; }
     height: fit-content;
     padding: 20px;
     padding-top: 15px;
-    background-color: rgb(85, 74, 152);
     border-radius: 30px;
     margin: 20px;
     min-height: 250px;
     transition: all .2s ease-in-out;
+    border: rgb(255, 255, 255) solid 1px;
+    background-color: rgb(85, 74, 152);
+    box-shadow:0 0 5px #9027f1, 0 0 15px #9027f1, 0 0 20px #9027f1, 0 0 40px #9027f1, 0 0 60px #0066ff, 0 0 10px #177eed, 0 0 98px #8cf5ff75;
 }
 
 .loadingError li{
     margin: 10px;
     padding: 10px;
+}
+
+.loadingError:hover{
+    transition: all .3s ease-in-out;
+    transform: scale(1.5)
 }
 
 .footerImg {

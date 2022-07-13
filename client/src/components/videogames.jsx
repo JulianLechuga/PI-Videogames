@@ -3,19 +3,27 @@ import loading from "../assets/loading2.gif"
 import main from "./various.module.css"
 
 export default function Videogames({vgs}) {
-
-    if (!vgs.length) {
-        setTimeout(() => {
-            document.getElementById('2').style.display = 'block';
-            document.getElementById('1').style.display = 'none'; 
-            }, 8000);
+    while (vgs.length === 0) {
+        // function blink() {
+        //     if (vgs.length === 0) {
+        //         function hide () {
+        //             document.getElementById("1").style.visibility = "hidden";
+        //             document.getElementById("2").style.visibility= 'visible' ;
+        //         }
+        //         setTimeout(hide, 5500) 
+        //     };
+        // };
         return (
-            <div> 
-                <img id="1" className={main.loading}src={loading} title="loading" alt="Loading..." />
-                <div id="2" className={main.loadingError}> <h1> No games were found :( </h1> This might be due to a couple reasons: <br /> <li> Are you sure you typed it's name correctly? </li> <li> The game you searched might not exist in this database </li> <li> You can try adding the game if you don't find it </li></div>
+            <div>
+                <div> 
+                    <img  id="1" className={main.loading}src={loading} title="loading" alt="Loading..." />
+                    <span id="2" className={main.loadingError}> <h1> No games were found :( </h1> This might be due to a couple reasons: <br /> <li> Are you sure you typed it's name correctly? </li> <li> The game you searched might not exist in this database </li> <li> You can try adding the game if you don't find it </li></span>
+                </div>
             </div>
             );
         };
+
+
 
     return (
       <div className="games">
