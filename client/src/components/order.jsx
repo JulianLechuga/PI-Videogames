@@ -16,7 +16,7 @@ export default function Order() {
 
     return (
         <div>
-        <button className={main.orderBtn} type="submit" value= {base} onClick={onSelectChange}>Reset filters</button> 
+        <button className={main.orderBtn} type="submit" value= {base} onClick={onSelectChange}>Reset</button> 
 
         <select onChange={onSelectChange} className={main.select}>
             <option value={base}>Order by</option>

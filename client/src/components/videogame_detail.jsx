@@ -6,7 +6,6 @@ import cards from "./cards.module.css"
 
 export default function GameDetail() {
     let [videogame, setVideogame] = useState(null)
-
     let {id} = useParams()
 
     useEffect(() => {
@@ -19,8 +18,6 @@ export default function GameDetail() {
         }
     }, [])
 
-    console.log(videogame)
-
     return <div>
             {
                 videogame ? 
@@ -31,14 +28,14 @@ export default function GameDetail() {
                         <div>
                             <h3> Genres: {videogame.genres.map(g => g.name).join(", ")} </h3>
                             <h3> Release date: {videogame.released} </h3>
-                            <h3> Platforms: {videogame.createdInDB ? videogame.platforms:  videogame.platforms.map(p => p.platform.name).join(", ")} </h3>
+                            <h3> Platforms: {videogame.createdInDB ? videogame.platforms :  videogame.platforms.map(p => p.platform.name).join(", ")} </h3>
                             <h3 className={cards.rating}> Rating: {videogame.rating} / 5 
                                     {Math.round(videogame.rating) === 0 && <div><span className={cards.offstars}> ★ ★ ★ ★ ★ </span></div>} 
                                     {Math.round(videogame.rating) === 1 && <div><span className={cards.stars}> ★  </span> <span className={cards.offstars}> ★ ★ ★ ★ </span></div>}
                                     {Math.round(videogame.rating) === 2 && <div><span className={cards.stars}> ★ ★  </span> <span className={cards.offstars}> ★ ★ ★ </span></div>}
                                     {Math.round(videogame.rating) === 3 && <div><span className={cards.stars}> ★ ★ ★  </span> <span className={cards.offstars}> ★ ★ </span></div>}
                                     {Math.round(videogame.rating) === 4  && <div><span className={cards.stars}> ★ ★ ★ ★ </span> <span className={cards.offstars}> ★ </span></div>}
-                                    {videogame.rating === 5 && <div><span className={cards.stars}> ★ ★ ★ ★ ★ </span></div>}
+                                    {Math.ceil(videogame.rating)=== 5 && <div><span className={cards.stars}> ★ ★ ★ ★ ★ </span></div>}
                             </h3>
                             {videogame.metacritic ? <h4> Metacritic Score: {videogame.metacritic}/100</h4> : null }
                             {videogame.playtime ? <h4> Average playtime: {videogame.playtime} hours</h4> : null }

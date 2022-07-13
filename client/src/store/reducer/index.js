@@ -22,7 +22,6 @@ const initialState = {
                     genres: action.payload,
                 }    
             case SEARCH_VIDEOGAMES:
-                console.log(action.payload)
                 return {
                     ...state,
                     filteredVideogames: action.payload,

@@ -31,9 +31,7 @@ function App() {
       dispatch(get_Videogames())
     }
   }, [])
-
-  console.log(genres)
-
+  
   let indexOfLastPost = current * vgsPerPage;
   let indexOfFirstPost = indexOfLastPost - vgsPerPage;
   let currentVgs = vgs.slice(indexOfFirstPost,indexOfLastPost)

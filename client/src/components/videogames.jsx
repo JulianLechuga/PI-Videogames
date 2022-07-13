@@ -3,26 +3,35 @@ import loading from "../assets/loading2.gif"
 import main from "./various.module.css"
 
 export default function Videogames({vgs}) {
-    while (vgs.length === 0) {
-        // function blink() {
-        //     if (vgs.length === 0) {
-        //         function hide () {
-        //             document.getElementById("1").style.visibility = "hidden";
-        //             document.getElementById("2").style.visibility= 'visible' ;
-        //         }
-        //         setTimeout(hide, 5500) 
-        //     };
-        // };
-        return (
-            <div>
-                <div> 
-                    <img  id="1" className={main.loading}src={loading} title="loading" alt="Loading..." />
-                    <span id="2" className={main.loadingError}> <h1> No games were found :( </h1> This might be due to a couple reasons: <br /> <li> Are you sure you typed it's name correctly? </li> <li> The game you searched might not exist in this database </li> <li> You can try adding the game if you don't find it </li></span>
-                </div>
-            </div>
-            );
-        };
+    let overtime = false
+    let timeOut = setTimeout(() => {
+        overtime = true
+    }, 2000);
+    
+    console.log(overtime)
 
+    if (!vgs.length) { 
+        setTimeout(() => {
+            if(!vgs.length) {
+                return (
+                    <span id="2" className={main.loadingError}> <h1> No games were found :( </h1> This might be due to a couple reasons: <br /> <li> Are you sure you typed it's name correctly? </li> <li> The game you searched might not exist in this database </li> <li> You can try adding the game if you don't find it </li></span>
+                )
+            }
+        }, 10000);
+
+            return (
+                    <div> 
+                        <img  onLoad={timeOut} id="1" className={main.loading}src={loading} title="loading" alt="Loading..." />
+                    </div>
+                );
+            }
+
+
+    // while (load) {
+    //     setTimeout(() => {
+    //         document.getElementById("1").style.visibility = "hidden"
+    //         document.getElementById("2").style.visibility = "visible"
+    //     }, 1000);
 
 
     return (

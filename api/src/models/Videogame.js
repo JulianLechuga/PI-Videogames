@@ -55,7 +55,7 @@ module.exports = (sequelize) => {
     },
     background_image: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
       defaultValue:`https://cdn.pixabay.com/photo/2020/05/02/07/32/gaming-5120169_960_720.jpg`
     },
     createdInDB: {
