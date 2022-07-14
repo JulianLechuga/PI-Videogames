@@ -9,7 +9,7 @@ export default function GameDetail() {
     let {id} = useParams()
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/videogames/${id}`)
+        axios.get(`/videogames/${id}`)
         .then ((game) => {
             setVideogame(game.data)
         })

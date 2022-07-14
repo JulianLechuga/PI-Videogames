@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       defaultValue: function() {
         myGames++ 
-        if (myGames % 2 === 0) {
+        if (myGames[0] % 2 === 0) {
           db++
         }
         return `${db}${myGames}`
