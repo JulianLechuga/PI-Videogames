@@ -99,7 +99,6 @@ const initialState = {
                 }
                 if(action.payload.length) {
                     let filtro = state.videogames.filter(v => v.genres.find(g => g.name === action.payload))
-                    console.log(state.videogames.filter(v => v.genres.find(g => g.name === action.payload)))
                     return {
                         ...state,
                         filteredVideogames: filtro

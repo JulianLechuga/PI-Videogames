@@ -143,8 +143,7 @@ export default function AddGame() {
          if (!/\S/.test(videogame.name) || new Date(videogame.released) > new Date() || !e.target.name.value || !e.target.released.value || !check.length || !plats.length || !e.target.rating.value) {
             alert("Key values are missing") 
         }  else { 
-            console.log(videogame)
-            axios.post(`http://localhost:3001/videogames`, videogame)
+            axios.post(`/videogames`, videogame)
             .then(() => {})
              alert("Videogame added succesfully") 
              history.push(`/videogames`);
@@ -188,7 +187,7 @@ export default function AddGame() {
             </div>
 
             <label htmlFor="">*Release Date: </label>
-            <input className={main.formInputs} placeholder="YYYY/MM/DD" onChange={onInputChange} name= "released" type="text" value= {videogame.released}/>
+            <input className={main.formInputs} placeholder="YYYY/MM/DD" onChange={onInputChange} name= "released" type="date" value= {videogame.released}/>
             {error.released && <p style={{ 'color': 'red' }}>{error.released}</p>}
             <br />
             <label htmlFor="">*Rating: </label>          
