@@ -1,6 +1,6 @@
 //[ ] Al menos tener un componente del frontend con sus tests respectivos
 import rootReducer from './reducer/index';
-import {  FETCH_VIDEOGAMES, FETCH_GENRES, SEARCH_VIDEOGAMES, SORT, FILTER } from './actions/index.js';
+import {  FETCH_VIDEOGAMES, FETCH_GENRES, SEARCH_VIDEOGAMES, SORT, FILTER, get_Videogames, get_Genres, search_Videogames, filter, sort } from './actions/index.js';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
@@ -94,84 +94,78 @@ describe('Reducer', () => {
  describe('Actions', () => {
 
     const mockStore = configureStore([thunk]);
-    const store = mockStore({ users: [], });
+    const store = mockStore({
+        videogames : [],
+        filteredVideogames: [],
+        genres: []
+        });
 
     beforeEach(() => store.clearActions());
 
-    describe('getAllUsers', () => {
+    describe('FETCH_VIDEOGAMES', () => {
 
-        it('Debería guardar en una variable GET_ALL_USERS el type "GET_ALL_USERS" que vamos a usar en la action creator "getAllUsers"', () => {
-            expect(GET_ALL_USERS).toBe('GET_ALL_USERS');
+        it("Should save the action type FETCH_VIDEOGAMES inside the FETCH_VIDEOGAMES action", () => {
+            expect(FETCH_VIDEOGAMES).toBe('FETCH_VIDEOGAMES');
         });
 
-        it('Debería hacer un dispatch con las propiedades type "GET_ALL_USERS" y como payload, el resultado del fetch al link provisto', async () => {
-            // La respuesta del get nos va a traer un montón de cosas. Agregar al payload solamente lo necesario.
-
-            return store.dispatch(getAllUsers())
+        it('Should dispatch FETCH_VIDEOGAMES and return the results of said request as a payload', async () => {
+            return store.dispatch(get_Videogames())
                 .then(() => {
                     const actions = store.getActions();
                     expect(actions[0].type).toEqual(
-                        'GET_ALL_USERS'
+                        'FETCH_VIDEOGAMES'
                     );
                 })
                 .catch(err => console.error(err));
         });
     });
 
-    describe('getAllUserPosts', () => {
+    describe('FETCH_GENRES', () => {
 
-        it('Debería guardar en una variable GET_ALL_USERS_POST el type "GET_ALL_USERS_POST" que vamos a usar en la action creator "getAllUserPosts"', () => {
-            expect(GET_ALL_USERS_POST).toBe('GET_ALL_USERS_POST');
+        it("Should save the action type 'FETCH_GENRES' inside the FETCH_GENRES action", () => {
+            expect(FETCH_GENRES).toBe('FETCH_GENRES');
         });
 
         it('Debería hacer un dispatch con las propiedades type "GET_ALL_USERS_POST" y como payload, el resultado del fetch al link provisto', async () => {
-            return store.dispatch(getAllUserPosts())
+            return store.dispatch(get_Genres())
                 .then(() => {
                     const actions = store.getActions();
                     expect(actions[0].type).toEqual(
-                        'GET_ALL_USERS_POST'
+                        'FETCH_GENRES'
                     );
                 })
                 .catch(err => console.error(err));
         });
     });
 
-    describe('getAllCommentsPost', (id) => {
+    describe('SEARCH_VIDEOGAMES', (id) => {
 
-        it('Debería guardar en una variable GET_ALL_COMMENTS_POST el type "GET_ALL_COMMENTS_POST" que vamos a usar en la action creator "getAllCommentsPost"', () => {
-            expect(GET_ALL_COMMENTS_POST).toBe('GET_ALL_COMMENTS_POST');
+        it("Should save the action type 'SEARCH_VIDEOGAMES' inside the SEARCH_VIDEOGAMES action", () => {
+            expect(SEARCH_VIDEOGAMES).toBe('SEARCH_VIDEOGAMES');
         });
     
         it('Debería hacer un dispatch con las propiedades type "GET_ALL_COMMENTS_POST" y como payload, los values recibidos como argumento y un ID incremental en la action creator "getAllCommentsPost"', () => {
             const id = 1
     
-            return store.dispatch(getAllCommentsPost(id))
+            return store.dispatch(search_Videogames())
             .then(() => {
                 const actions = store.getActions();
                 expect(actions[0].type).toEqual(
-                    'GET_ALL_COMMENTS_POST'
+                    'SEARCH_VIDEOGAMES'
                 );
             })
             .catch(err => console.error(err));
         });
     });
 
-    describe('getAllPosts', () => {
+    describe('Filter / Sort', () => {
 
-        it('Debería guardar en una variable GET_ALL_POSTS el type "GET_ALL_POSTS" de la action createHouse', () => {
-            expect(GET_ALL_POSTS).toBe('GET_ALL_POSTS');
+        it("Should save the action type 'FILTER' inside the FILTER action", () => {
+            expect(FILTER).toBe('FILTER');
         });
-        
-        it('Debería hacer un dispatch con las propiedades type "GET_ALL_POST" y como payload, los values recibidos como argumento en la action creator "getAllPosts"', () => {
-        return store.dispatch(getAllPosts())
-            .then(() => {
-                const actions = store.getActions();
-                expect(actions[0].type).toEqual(
-                    'GET_ALL_POSTS'
-                );
-            })
-            .catch(err => console.error(err));
-        });
-    });
 
-})
+        it("Should save the action type 'SORT' inside the SORT action", () => {
+            expect(SORT).toBe('SORT');
+        });
+    })
+});

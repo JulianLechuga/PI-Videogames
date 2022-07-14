@@ -1,5 +1,5 @@
 import React from "react";
-import main from "./various.module.css"
+import main from "./css/various.module.css"
 
 export default function Pagination({vgsPerPage, totalVgs, paginate}) {
     let pageNumbers = [];
@@ -7,7 +7,7 @@ export default function Pagination({vgsPerPage, totalVgs, paginate}) {
         pageNumbers.push(i);
     }
 
-    return <div>
+    return <div className={main.paginationDiv}>
     {pageNumbers.length > 0  ? 
             <nav className={main.pagination}>
                     {pageNumbers.map(number => (
@@ -19,7 +19,6 @@ export default function Pagination({vgsPerPage, totalVgs, paginate}) {
                     ))}
             </nav>
          : null }
-         )
     </div>
 };
 

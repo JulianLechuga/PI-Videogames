@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import loading from "../assets/loading.gif";
-import cards from "./cards.module.css"
+import cards from "./css/cards.module.css"
 
 export default function GameDetail() {
     let [videogame, setVideogame] = useState(null)
@@ -35,7 +35,7 @@ export default function GameDetail() {
                                     {Math.round(videogame.rating) === 2 && <div><span className={cards.stars}> ★ ★  </span> <span className={cards.offstars}> ★ ★ ★ </span></div>}
                                     {Math.round(videogame.rating) === 3 && <div><span className={cards.stars}> ★ ★ ★  </span> <span className={cards.offstars}> ★ ★ </span></div>}
                                     {Math.round(videogame.rating) === 4  && <div><span className={cards.stars}> ★ ★ ★ ★ </span> <span className={cards.offstars}> ★ </span></div>}
-                                    {Math.ceil(videogame.rating)=== 5 && <div><span className={cards.stars}> ★ ★ ★ ★ ★ </span></div>}
+                                    {videogame.rating === 5 && <div><span className={cards.stars}> ★ ★ ★ ★ ★ </span></div>}
                             </h3>
                             {videogame.metacritic ? <h4> Metacritic Score: {videogame.metacritic}/100</h4> : null }
                             {videogame.playtime ? <h4> Average playtime: {videogame.playtime} hours</h4> : null }

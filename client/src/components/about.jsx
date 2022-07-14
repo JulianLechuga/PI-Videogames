@@ -1,4 +1,4 @@
-import various from "./various.module.css"
+import various from "./css/various.module.css"
 import github from '../assets/github_logo.png'
 import linkedIn from'../assets/linked_logo.png'
 

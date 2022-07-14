@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import { A_Z, base, ratingAsc, ratingDesc, Z_A, library, userMade, Action, Puzzle, Indie, Adventure, Arcade, RPG, Strategy, Shooter, Casual, Simulation, Racing, Platformer, Massively_Multiplayer, Sports, Fighting, Board_Games, Card, Educational, Family} from "../constants/sort"
 import { sort, filter } from "../store/actions"
-import main from "./cards.module.css"
+import main from "./css/cards.module.css"
 
 export default function Order() {
     let dispatch = useDispatch()
@@ -15,7 +15,7 @@ export default function Order() {
     }
 
     return (
-        <div>
+        <div className={main.orderDiv}>
         <button className={main.orderBtn} type="submit" value= {base} onClick={onSelectChange}>Reset</button> 
 
         <select onChange={onSelectChange} className={main.select}>

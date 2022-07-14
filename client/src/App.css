@@ -1,11 +1,32 @@
 .App {
   text-align: center;
   background-image: url("./assets/main-background.gif");
-  width: 100%;
+  background-color: black;
   min-height: 100%;
-  height: fit-content;
+  min-width: 1024px;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  background-size: cover;
+  overflow: hidden;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-size:cover;
-  position:absolute;
   background-position: center;
+  
+}
+
+@media only screen and (max-width: 600px) {
+  .App {
+    left: 50%;
+    margin-left: -512px;
+  }
+  body {
+    background-image:none;
+    background-color: rgb(231, 186, 250)  ;
+    width: fit-content;
+    height: fit-content;
+    background-size:auto;
+    background-repeat: no-repeat;
+    position:relative;
+  }
 }

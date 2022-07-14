@@ -3,7 +3,7 @@ import { search_Videogames } from "../store/actions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom"
 import searchIcon from "../assets/searching.png"
-import nav from "./nav.module.css"
+import nav from "./css/nav.module.css"
 
 
 export default function SearchBar() {

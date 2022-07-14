@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import nav from './nav.module.css';
+import nav from './css/nav.module.css';
 import SearchBar from './searchBar';
 
 export default function Nav() {

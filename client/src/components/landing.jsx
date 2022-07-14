@@ -1,5 +1,5 @@
 import landing from "../assets/purple1.jpg"
-import main from "./various.module.css"
+import main from "./css/various.module.css"
 
 export default function LandingPage() {
     return (

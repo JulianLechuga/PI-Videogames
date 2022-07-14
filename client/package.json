@@ -6,10 +6,14 @@
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^13.1.1",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
+    "enzyme": "^3.11.0",
+    "mock": "^0.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-is": "^18.2.0",
     "react-redux": "^7.2.8",
     "react-router": "^6.3.0",
     "react-router-dom": "^5.3.0",
@@ -17,6 +21,8 @@
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
+    "shallow": "^1.0.0",
+    "store": "^2.0.12",
     "thunk": "^0.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -43,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "redux-mock-store": "^1.5.4"
   }
 }

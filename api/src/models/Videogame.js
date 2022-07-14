@@ -11,7 +11,10 @@ module.exports = (sequelize) => {
     id: {
       type: DataTypes.INTEGER,
       defaultValue: function() {
-        myGames++
+        myGames++ 
+        if (myGames % 2 === 0) {
+          db++
+        }
         return `${db}${myGames}`
       },
       primaryKey: true

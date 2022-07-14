@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-import main from "./various.module.css"
+import main from "./css/various.module.css"
 import {Action, Puzzle, Indie, Adventure, Arcade, RPG, Strategy, Shooter, Casual, Simulation, Racing, Platformer, Massively_Multiplayer, Sports, Fighting, Board_Games, Card, Educational, Family} from "../constants/sort"
 import { useHistory } from "react-router-dom";
 
@@ -10,14 +10,14 @@ export default function AddGame() {
    let [plats, setPlats] = useState([]);
    let genArr = [];
    let platArr = [];
-    
+
    let [videogame, setVideogame] = useState({
         name: "",
         genres: "",
         released: "",
         rating: "",
-        metacritic: "",
-        playtime: "",
+        metacritic: undefined,
+        playtime: undefined,
         description:"",
         platforms: "",
         background_image: undefined,
@@ -101,6 +101,12 @@ export default function AddGame() {
               ...error,
               released: 'Must introduce a release date'
            })
+           
+        } else if (new Date(videogame.released) > new Date()){ 
+            setError(error = {
+               ...error,
+               released: "Games can't be from the future"
+            })
         } else if (!regexDate.test(videogame.released)) {
             setError(error = {
                 ...error,
@@ -134,7 +140,7 @@ export default function AddGame() {
                platforms: ""
             })
          }
-         if (!/\S/.test(videogame.name) || !e.target.name.value || !e.target.released.value || !check.length || !plats.length || !e.target.rating.value) {
+         if (!/\S/.test(videogame.name) || new Date(videogame.released) > new Date() || !e.target.name.value || !e.target.released.value || !check.length || !plats.length || !e.target.rating.value) {
             alert("Key values are missing") 
         }  else { 
             console.log(videogame)
@@ -213,7 +219,7 @@ export default function AddGame() {
             <input className={main.formInputs} placeholder="Game's description" onChange={onInputChange} name= "description" type="text" value= {videogame.description}/>
             <br />
             <label htmlFor="">Playtime: </label>
-            <input className={main.formInputs} placeholder="Playtime..." onChange={onInputChange} name= "playtime" type="text" value= {videogame.playtime}/>
+            <input className={main.formInputs} placeholder="Playtime..." onChange={onInputChange} name= "playtime" type="number" min="0" value= {videogame.playtime}/>
             <br />
             <label htmlFor="">Image URL: </label>
             <input className={main.formInputs} onChange={onInputChange} placeholder="URL..." name= "background_image" type="text" value= {videogame.background_image}/>
