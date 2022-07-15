@@ -35,7 +35,6 @@ router.get("/videogames", async (req, res, next) => {
             } else {
                 videogame = videogameAPI.data.results
             }
-            console.log(videogame)
             return res.status(200).json(videogame)
         } catch (error) {
             next(error)

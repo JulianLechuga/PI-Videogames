@@ -108,7 +108,7 @@ describe('Reducer', () => {
             expect(FETCH_VIDEOGAMES).toBe('FETCH_VIDEOGAMES');
         });
 
-        it('Should dispatch FETCH_VIDEOGAMES and return the results of said request as a payload', async () => {
+        it('When dispatching get_Videogames(), the action type of said dispatch should be FETCH_VIDEOGAMES', async () => {
             return store.dispatch(get_Videogames())
                 .then(() => {
                     const actions = store.getActions();
@@ -126,7 +126,7 @@ describe('Reducer', () => {
             expect(FETCH_GENRES).toBe('FETCH_GENRES');
         });
 
-        it('Debería hacer un dispatch con las propiedades type "GET_ALL_USERS_POST" y como payload, el resultado del fetch al link provisto', async () => {
+        it('When dispatching get_Genres(), the action type of said dispatch should be FETCH_GENRES', async () => {
             return store.dispatch(get_Genres())
                 .then(() => {
                     const actions = store.getActions();
@@ -138,15 +138,13 @@ describe('Reducer', () => {
         });
     });
 
-    describe('SEARCH_VIDEOGAMES', (id) => {
+    describe('SEARCH_VIDEOGAMES', () => {
 
         it("Should save the action type 'SEARCH_VIDEOGAMES' inside the SEARCH_VIDEOGAMES action", () => {
             expect(SEARCH_VIDEOGAMES).toBe('SEARCH_VIDEOGAMES');
         });
     
-        it('Debería hacer un dispatch con las propiedades type "GET_ALL_COMMENTS_POST" y como payload, los values recibidos como argumento y un ID incremental en la action creator "getAllCommentsPost"', () => {
-            const id = 1
-    
+        it('When dispatching search_Videogames(), the action type of said dispatch should be SEARCH_VIDEOGAMES', () => {
             return store.dispatch(search_Videogames())
             .then(() => {
                 const actions = store.getActions();

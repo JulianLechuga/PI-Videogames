@@ -4,6 +4,7 @@ import nav from './css/nav.module.css';
 import SearchBar from './searchBar';
 
 export default function Nav() {
+
   return (
     <div className={nav.nav}>
       <Link to = "/videogames">

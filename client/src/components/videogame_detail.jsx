@@ -24,7 +24,7 @@ export default function GameDetail() {
                 <div className={cards.detail}>
                         <h1> {videogame.name} </h1>
                         <img src={videogame.background_image} alt="Not found :(" />
-                        {videogame.description ? <h3> Description: <br/> {videogame.description.replaceAll("<p>","").replaceAll("</p>","").replaceAll("<br />","").replaceAll("<br/>","").replaceAll("<strong>","").replaceAll("</strong>","").replaceAll("<ul>","").replaceAll("</ul>","").replaceAll("<li>","").replaceAll("</li>","").replaceAll("[object Object]","")} </h3> : null}
+                        {videogame.description ? <h3> Description: <br/> {videogame.description.replaceAll("<p>","").replaceAll("</p>","").replaceAll("<br />","").replaceAll("<br/>","").replaceAll("<strong>","").replaceAll("</strong>","").replaceAll("<ul>","").replaceAll("</ul>","").replaceAll("<li>","").replaceAll("</li>","").replaceAll("[object Object]","").replaceAll("<h3>", "").replaceAll("&#39;", "")} </h3> : null}
                         <div>
                             <h3> Genres: {videogame.genres.map(g => g.name).join(", ")} </h3>
                             <h3> Release date: {videogame.released} </h3>

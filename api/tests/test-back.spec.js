@@ -83,7 +83,7 @@ const addGame = (game) => {
 
 describe('POST /videogames', () => {
       it('Adds a new Videogame', () => {
-        const game = { name: "Counter Routing: Global State", genres: ["Action", "Strategy", "Puzzle"], platforms: "PC", rating: 5, released: "1971-04-06", playtime: 23, metacritic: 100, description: null };
+        const game = { name: "Counter Routing: Global State", genres: ["Action", "Strategy", "Puzzle"], platforms: "PC", rating: "5.00", released: "1971-04-06", playtime: 23, metacritic: 100, description: null };
         return addGame(game)
           .then((gameReturned) => {
             expect(gameReturned).to.deep.equal(game);
@@ -91,23 +91,23 @@ describe('POST /videogames', () => {
       });
   
       it('Returns an error when the name is missing', () => {
-        return req("POST", 400, { genres: ["Action", "Shooter", "Puzzle"], platforms: "PC", rating:5, released: "1971-04-06", playtime: 23, metacritic: 100, description: null });
+        return req("POST", 400, { genres: ["Action", "Shooter", "Puzzle"], platforms: "PC", rating:"3.56", released: "1971-04-06", playtime: 23, metacritic: 100, description: null });
       });
   
       it('Returns an error when genres are missing', () => {
-        return req("POST", 400, { genres: ["Action", "Shooter", "Puzzle"], platforms: "PC", rating:5, released: "1971-04-06", playtime: 23, metacritic: 100, description: null });
+        return req("POST", 400, { genres: ["Action", "Shooter", "Puzzle"], platforms: "PC", rating:"4.20", released: "1971-04-06", playtime: 23, metacritic: 100, description: null });
       });
   
       it('Returns an error when platforms are missing', () => {
-        return req("POST", 400, { name: 'Counter Routing: Global State', genres: ["Action", "Shooter", "Puzzle"], rating: 5, released: "1971-04-06", playtime: 23, metacritic: 100, description: null });
+        return req("POST", 400, { name: 'Counter Routing: Global State', genres: ["Action", "Shooter", "Puzzle"], rating: 5.00, released: "1971-04-06", playtime: 23, metacritic: 100, description: null });
       });
 
       it('Returns an error when rating is missing', () => {
-        return req("POST", 400, { name: 'Counter Routing: Global State', genres: ["Action", "Shooter", "Puzzle"], rating: 5, released: "1971-04-06", playtime: 23, metacritic: 100, description: null });
+        return req("POST", 400, { name: 'Counter Routing: Global State', genres: ["Action", "Shooter", "Puzzle"], rating: "5.00", released: "1971-04-06", playtime: 23, metacritic: 100, description: null });
       });
 
       it('Adds a new Videogame even with missing non-key parameters', () => {
-        const game = { name: "Counter Routing: Global State", genres: ["Action", "Strategy", "Puzzle"], platforms: "PC", rating: 5, released: "1971-04-06"};
+        const game = { name: "Counter Routing: Global State", genres: ["Action", "Strategy", "Puzzle"], platforms: "PC", rating: "5.00", released: "1971-04-06"};
         return addGame(game)
           .then((gameReturned) => {
             expect(gameReturned).to.deep.equal(game);

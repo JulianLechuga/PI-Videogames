@@ -163,24 +163,24 @@ export default function AddGame() {
                   <select className = {main.select} onChange={setGenre}>
                      <option value="" defaultValue>Genres</option>
                      <option value={Action} >Action</option>
-                     <option value={Indie} >Indie</option>
                      <option value={Adventure} >Adventure</option>
-                     <option value={RPG} >RPG</option>
-                     <option value={Strategy} >Strategy</option>
-                     <option value={Shooter} >Shooter</option>
-                     <option value={Casual} >Casual</option>
-                     <option value={Simulation} >Simulation</option>
-                     <option value={Puzzle} >Puzzle</option>
                      <option value={Arcade} >Arcade</option>
-                     <option value={Platformer} >Platformer</option>
-                     <option value={Racing} >Racing</option>
-                     <option value={Massively_Multiplayer} >Massively Multiplayer</option>
-                     <option value={Sports} >Sports</option>
-                     <option value={Fighting} >Fighting</option>
-                     <option value={Family} >Family</option>
                      <option value={Board_Games} >Board Games</option>
-                     <option value={Educational} >Educational</option>
                      <option value={Card} >Card</option>
+                     <option value={Casual} >Casual</option>
+                     <option value={Educational} >Educational</option>
+                     <option value={Family} >Family</option>
+                     <option value={Fighting} >Fighting</option>
+                     <option value={Indie} >Indie</option>
+                     <option value={Massively_Multiplayer} >Massively Multiplayer</option>
+                     <option value={Platformer} >Platformer</option>
+                     <option value={Puzzle} >Puzzle</option>
+                     <option value={RPG} >RPG</option>
+                     <option value={Racing} >Racing</option>
+                     <option value={Shooter} >Shooter</option>
+                     <option value={Simulation} >Simulation</option>
+                     <option value={Sports} >Sports</option>
+                     <option value={Strategy} >Strategy</option>
                   </select>
             {error.genres && <p style={{ 'color': 'red' }}>{error.genres}</p>}
             {check && <h3>{check.join(" - ")}</h3>}

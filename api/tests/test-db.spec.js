@@ -29,7 +29,8 @@ describe('Videogame Model', () => {
           playtime: videogameTest.playtime,
           released: videogameTest.released,
           metacritic: videogameTest.metacritic,
-          background_image: "https://cdn.pixabay.com/photo/2020/05/02/07/32/gaming-5120169_960_720.jpg                                                                                                                                                                                      ",
+          background_image: "https://cdn.pixabay.com/photo/2020/05/02/07/32/gaming-5120169_960_720.jpg",
+          createdInDB: true,
         });
       });
 
@@ -112,7 +113,8 @@ describe('Videogame Model', () => {
         playtime: videogameTest.playtime,
         released: videogameTest.released,
         metacritic: videogameTest.metacritic,
-        background_image: "https://cdn.pixabay.com/photo/2020/05/02/07/32/gaming-5120169_960_720.jpg                                                                                                                                                                                      ",
+        background_image: "https://cdn.pixabay.com/photo/2020/05/02/07/32/gaming-5120169_960_720.jpg",
+        createdInDB: true
       });
     })
 

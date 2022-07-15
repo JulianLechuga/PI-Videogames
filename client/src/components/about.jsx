@@ -27,8 +27,8 @@ export default function About() {
                 <h2> I hope you have a great day</h2>
 
                 <h4>Here are some links if you'd like to contact me</h4>
-                <a href="https://github.com/JulianLechuga"><img className={various.footerImg} src={github} alt="Github" target="_blank"/></a>
-                <a href="https://www.linkedin.com/in/julian-lechuga-28a782156/"><img className={various.footerImg} src={linkedIn} target="_blank"/></a>
+                <a href="https://github.com/JulianLechuga" target="_blank" rel="noopener noreferrer"><img className={various.footerImg} src={github} alt="Github"/></a>
+                <a href="https://www.linkedin.com/in/julian-lechuga-28a782156/" target="_blank" rel="noopener noreferrer"><img className={various.footerImg} src={linkedIn}/></a>
             </div>
         </div>
     );
