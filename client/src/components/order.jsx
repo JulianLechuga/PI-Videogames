@@ -4,15 +4,15 @@ import { sort, filter } from "../store/actions"
 import main from "./css/cards.module.css"
 
 export default function Order() {
-    let dispatch = useDispatch()
+    let dispatch = useDispatch();
 
     function onSelectChange(e) {
         dispatch(sort(e.target.value))
-    }
+    };
 
     function onSelectFilter(e) {
         dispatch(filter(e.target.value))
-    }
+    };
 
     return (
         <div className={main.orderDiv}>
@@ -55,5 +55,5 @@ export default function Order() {
             <option value={userMade} >User-Created</option>
         </select>
         </div>
-    )
-}
+    );
+};

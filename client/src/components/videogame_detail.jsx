@@ -1,12 +1,12 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import loading from "../assets/loading.gif";
-import cards from "./css/cards.module.css"
+import cards from "./css/cards.module.css";
 
 export default function GameDetail() {
-    let [videogame, setVideogame] = useState(null)
-    let {id} = useParams()
+    let [videogame, setVideogame] = useState(null);
+    let {id} = useParams();
 
     useEffect(() => {
         axios.get(`/videogames/${id}`)
@@ -16,7 +16,7 @@ export default function GameDetail() {
         return () => {
             setVideogame(null)
         }
-    }, [])
+    }, []);
 
     return <div>
             {
@@ -37,15 +37,15 @@ export default function GameDetail() {
                                     {Math.round(videogame.rating) === 4  && <div><span className={cards.stars}> ★ ★ ★ ★ </span> <span className={cards.offstars}> ★ </span></div>}
                                     {videogame.rating === 5 && <div><span className={cards.stars}> ★ ★ ★ ★ ★ </span></div>}
                             </h3>
-                            {videogame.metacritic ? <h4> Metacritic Score: {videogame.metacritic}/100</h4> : null }
-                            {videogame.playtime ? <h4> Average playtime: {videogame.playtime} hours</h4> : null }
+                            {videogame.metacritic ? <h4> Metacritic Score: {videogame.metacritic}/100</h4> : null };
+                            {videogame.playtime ? <h4> Average playtime: {videogame.playtime} hours</h4> : null };
                         </div>
                 </div>  
                 : 
-                <div className="temp">
+                <div>
                         <img src={loading} alt="loading..." />
                 </div>
-            }
+            };
 
     </div>
-}
+};

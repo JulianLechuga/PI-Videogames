@@ -1,7 +1,7 @@
-import axios from "axios"
-import { useState } from "react"
-import main from "./css/various.module.css"
-import {Action, Puzzle, Indie, Adventure, Arcade, RPG, Strategy, Shooter, Casual, Simulation, Racing, Platformer, Massively_Multiplayer, Sports, Fighting, Board_Games, Card, Educational, Family} from "../constants/sort"
+import axios from "axios";
+import { useState } from "react";
+import main from "./css/various.module.css";
+import { Action, Puzzle, Indie, Adventure, Arcade, RPG, Strategy, Shooter, Casual, Simulation, Racing, Platformer, Massively_Multiplayer, Sports, Fighting, Board_Games, Card, Educational, Family } from "../constants/sort"
 import { useHistory } from "react-router-dom";
 
 export default function AddGame() {
@@ -62,18 +62,18 @@ export default function AddGame() {
             [e.target.playtime]: e.target.value,
             [e.target.description]: e.target.value,
             [e.target.background_image]: e.target.value,
-        })
-    }
+        });
+    };
         
     function onSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
         let regexDate = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
 
         if (videogame.name === '') {
             setError(error = {
               ...error,
               name: 'Name cannot be blank'
-           })
+           });
          } else if (!/\S/.test(videogame.name)) {
             setError(error = {
               ...error,
@@ -84,7 +84,7 @@ export default function AddGame() {
               ...error,
               name: ''
            })
-        } 
+        };
         if (!check.length) {
             setError(error = {
                 ...error,
@@ -95,12 +95,12 @@ export default function AddGame() {
                ...error,
                genres: ""
             })
-         }
+         };
         if (videogame.released === '') {
             setError(error = {
               ...error,
               released: 'Must introduce a release date'
-           })
+           });
            
         } else if (new Date(videogame.released) > new Date()){ 
             setError(error = {
@@ -117,7 +117,7 @@ export default function AddGame() {
               ...error,
               released: ''
            })
-        } 
+        };
         if (e.target.rating.value === "" || e.target.rating.value > 5 || e.target.rating.value < 0) {
             setError(error = {
               ...error,
@@ -128,7 +128,7 @@ export default function AddGame() {
               ...error,
               rating: ""
            })
-        }
+        };
         if (!check.length) {
             setError(error = {
                 ...error,
@@ -139,7 +139,7 @@ export default function AddGame() {
                ...error,
                platforms: ""
             })
-         }
+         };
          if (!/\S/.test(videogame.name) || new Date(videogame.released) > new Date() || !e.target.name.value || !e.target.released.value || !check.length || !plats.length || !e.target.rating.value) {
             alert("Key values are missing") 
         }  else { 
@@ -226,5 +226,5 @@ export default function AddGame() {
             <input type="submit" value= "Add" onSubmit={onSubmit}/>
             <h4> *Required fields </h4>
         </form>
-    )
-}
+    );
+};

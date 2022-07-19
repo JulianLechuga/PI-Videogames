@@ -15,7 +15,7 @@ export default function About() {
                 Even so, I still felt like it was an excellent opportunity  to expand upon and develop my skills with technologies like React, Redux, Express, Sequelize and Postgres
             </div>
             <div className={various.p}>
-            And as for a bit about myself. My name is Julian Lechuga and I am a student at Henry's bootcamp, currently in the final stages and acting as a teaching assistant.
+                And as for a bit about myself. My name is Julian Lechuga and I am a student at Henry's bootcamp, currently in the final stages and acting as a teaching assistant.
                 While having only picked up programming recently, I still managed to get the hang of it rather quickly. I deeply enjoy the challenges that were presented to me during Henry's bootcamp. <br />
                 I feel that my ease of picking up and learning new topics combined with Henry's extremely packed schedule managed to boost my learning far greater than I could have ever done by myself. <br />
                 As the end of my stay on this programming course nears, I decided to become a teaching assistant, so I could give back a bit of the help and support that my own teaching assistants gave me through the course. <br />  

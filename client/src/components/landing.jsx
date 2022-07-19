@@ -8,5 +8,5 @@ export default function LandingPage() {
             <a className={main.landingBtn} href="/videogames"> Enter </a>
             <h1 className={main.landingTitle}> Henry Videogames Proyect </h1>
         </div>
-    )
-}
+    );
+};

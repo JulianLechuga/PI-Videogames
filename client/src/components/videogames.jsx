@@ -10,25 +10,24 @@ export default function Videogames({vgs}) {
                         <span id="2" className={main.loadingError}> <h1> No games were found :( </h1>  <h3> This might be due to a couple reasons: </h3> <li> Are you sure you typed the game's name correctly? </li> <li> The game you searched might not exist in this database </li> <li> You can try adding the game if you don't find it </li> <li> Maybe our database is down, please try again in a few minutes </li></span>
                     </div>
                 );
-            }
+            };
 
     function checkStatus () {
         if(vgs.length === 0) {
             if (document.getElementById("1")) {
                 document.getElementById("1").style.visibility = "hidden"
                 document.getElementById("2").style.visibility = "visible"
-            }
+            };
 
         } else {
-            setTimeout(checkStatus, 8000)
-        }
-    }
+            setTimeout(checkStatus, 12000)
+        };
+    };
 
     function loadCheck() {
-        setTimeout(checkStatus, 8000)
-    }
+        setTimeout(checkStatus, 12000)
+    };
     
-
     return (
       <div className="games">
          {vgs.map((game) => {
@@ -49,5 +48,5 @@ export default function Videogames({vgs}) {
             )}
         )}
     </div>
-    )
-}
+    );
+};

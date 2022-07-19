@@ -18,8 +18,6 @@ export default function Pagination({vgsPerPage, totalVgs, paginate}) {
                         </li>
                     ))}
             </nav>
-         : null }
+         : null };
     </div>
 };
-
-// {number == pageNumbers.length ? null :  <button onClick={()=> paginate(number <= pageNumbers.length -1 && number+1)} > Next </button>}
