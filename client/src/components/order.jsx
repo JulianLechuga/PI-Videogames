@@ -6,19 +6,26 @@ import main from "./css/cards.module.css"
 export default function Order() {
     let dispatch = useDispatch();
 
+    function resetAndDispatch(e) {
+        document.getElementById("order").value = base;
+        document.getElementById("genre").value =  base;
+        document.getElementById("database").value = base;
+        dispatch(sort(e.target.value));
+    };
+
     function onSelectChange(e) {
-        dispatch(sort(e.target.value))
+        dispatch(sort(e.target.value));
     };
 
     function onSelectFilter(e) {
-        dispatch(filter(e.target.value))
+        dispatch(filter(e.target.value));
     };
 
     return (
         <div className={main.orderDiv}>
-        <button className={main.orderBtn} type="submit" value= {base} onClick={onSelectChange}>Reset</button> 
+        <button className={main.orderBtn} type="submit" value= {base} onClick={resetAndDispatch}>Reset</button> 
 
-        <select onChange={onSelectChange} className={main.select}>
+        <select id="order" onChange={onSelectChange} className={main.select}>
             <option value={base}>Order by</option>
             <option value={A_Z} >A-Z</option>
             <option value={Z_A} >Z-A</option>
@@ -26,8 +33,8 @@ export default function Order() {
             <option value={ratingDesc} > Rating 5 - 0 </option>
         </select>
 
-        <select onChange={onSelectFilter} className={main.select}>
-            <option value={base}defaultValue>Genre</option>
+        <select id="genre" onChange={onSelectFilter} className={main.select}>
+                <option value={base}>Genre</option>
                 <option value={Action} >Action</option>
                 <option value={Adventure} >Adventure</option>
                 <option value={Arcade} >Arcade</option>
@@ -49,8 +56,8 @@ export default function Order() {
                 <option value={Strategy} >Strategy</option>
         </select>
 
-        <select onChange={onSelectFilter} className={main.select}>
-        <option value={base} defaultValue>Origin</option>
+        <select id="database" onChange={onSelectFilter} className={main.select}>
+            <option value={base}>Origin</option>
             <option value={library}>Library</option>
             <option value={userMade} >User-Created</option>
         </select>
