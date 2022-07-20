@@ -82,11 +82,9 @@ router.post("/videogames", async (req, res, next) => {
     let {name, released, rating, genres, description, metacritic, platforms, background_image, playtime} = req.body
     let genresFind
     try {
-
         if(!name || !released || !rating || !genres || !platforms){
             return res.status(400).json({error: "Missing key values"})
         }
-
         let newGame = await Videogame.create({
             name,
             released,
@@ -97,7 +95,6 @@ router.post("/videogames", async (req, res, next) => {
             metacritic,
             background_image,
         })
-
         if (typeof genres === "object") {
             for (let i = 0; i < genres.length; i++) {
                 genresFind = await Genre.findAll({where: {name:  genres[i] } })
@@ -107,13 +104,11 @@ router.post("/videogames", async (req, res, next) => {
             genresFind = await Genre.findAll({where: {name:  genres } })
             await newGame.addGenres(genresFind)
         }
-
         let fullGame = await Videogame.findOne({
             include: Genre,
             where: {
                 name: name
             }})
-
         res.status(201).json(fullGame)
     } catch (error) {
         next(error)
@@ -135,6 +130,5 @@ router.get("/genres", async (req, res, next) => {
         next(error)
     };
 });
-
 
 module.exports = router;

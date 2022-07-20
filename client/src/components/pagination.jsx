@@ -18,6 +18,6 @@ export default function Pagination({vgsPerPage, totalVgs, paginate}) {
                         </li>
                     ))}
             </nav>
-         : null };
+         : null }
     </div>
 };

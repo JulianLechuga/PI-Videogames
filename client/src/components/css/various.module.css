@@ -146,8 +146,8 @@ a:hover { text-decoration: none; }
     position: relative;
     display: inline-block;
     margin: 0 auto;
-    left: 38.4%;
-    right: 53%;
+    left: 38%;
+    right: 50%;
 }
 
 .pagination{

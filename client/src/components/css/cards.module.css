@@ -172,3 +172,9 @@ a:hover { text-decoration: none; }
   color: rgb(112, 112, 112);
   font-size: x-large;
 }
+
+@media only screen and (max-width: 600px) {
+  body.Card {
+    width: 35%;
+  }
+}

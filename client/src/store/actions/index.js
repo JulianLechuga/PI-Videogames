@@ -5,7 +5,6 @@ export const SEARCH_VIDEOGAMES = "SEARCH_VIDEOGAMES"
 export const SORT = "SORT"
 export const FILTER = "FILTER"
 
-
 export function get_Videogames(){
     return async function (dispatch){
         await axios (`/videogames`)

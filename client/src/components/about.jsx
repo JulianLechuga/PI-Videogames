@@ -28,7 +28,7 @@ export default function About() {
 
                 <h4>Here are some links if you'd like to contact me</h4>
                 <a href="https://github.com/JulianLechuga" target="_blank" rel="noopener noreferrer"><img className={various.footerImg} src={github} alt="Github"/></a>
-                <a href="https://www.linkedin.com/in/julian-lechuga-28a782156/" target="_blank" rel="noopener noreferrer"><img className={various.footerImg} src={linkedIn}/></a>
+                <a href="https://www.linkedin.com/in/julian-lechuga-28a782156/" target="_blank" rel="noopener noreferrer"><img className={various.footerImg} src={linkedIn} alt="LinkedIn"/></a>
             </div>
         </div>
     );

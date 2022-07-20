@@ -35,10 +35,10 @@ export default function GameDetail() {
                                     {Math.round(videogame.rating) === 2 && <div><span className={cards.stars}> ★ ★  </span> <span className={cards.offstars}> ★ ★ ★ </span></div>}
                                     {Math.round(videogame.rating) === 3 && <div><span className={cards.stars}> ★ ★ ★  </span> <span className={cards.offstars}> ★ ★ </span></div>}
                                     {Math.round(videogame.rating) === 4  && <div><span className={cards.stars}> ★ ★ ★ ★ </span> <span className={cards.offstars}> ★ </span></div>}
-                                    {videogame.rating === 5 && <div><span className={cards.stars}> ★ ★ ★ ★ ★ </span></div>}
+                                    {Math.round(videogame.rating) === 5 && <div><span className={cards.stars}> ★ ★ ★ ★ ★ </span></div>}
                             </h3>
-                            {videogame.metacritic ? <h4> Metacritic Score: {videogame.metacritic}/100</h4> : null };
-                            {videogame.playtime ? <h4> Average playtime: {videogame.playtime} hours</h4> : null };
+                            {videogame.metacritic ? <h4> Metacritic Score: {videogame.metacritic}/100</h4> : null }
+                            {videogame.playtime ? <h4> Average playtime: {videogame.playtime} hours</h4> : null }
                         </div>
                 </div>  
                 : 

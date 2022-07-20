@@ -191,7 +191,7 @@ export default function AddGame() {
             {error.released && <p style={{ 'color': 'red' }}>{error.released}</p>}
             <br />
             <label htmlFor="">*Rating: </label>          
-            <input className={main.formInputs} placeholder="0 / 5" onChange={onInputChange} name= "rating" type="number" value= {videogame.rating} min="0" max="5"/>
+            <input className={main.formInputs} placeholder="0 / 5" onChange={onInputChange} name= "rating" type="number" value= {videogame.rating} min="0" max="5" step=".01"/>
             {error.rating && <p style={{ 'color': 'red' }}>{error.rating}</p>}
             <br />
             <label htmlFor="">Metacritic score: </label>
@@ -200,13 +200,19 @@ export default function AddGame() {
             <label htmlFor="">*Platforms: </label>
             <select className = {main.select} onChange={setPlatform}>
                      <option value="" defaultValue>Platforms</option>
-                     <option value={"PC"} > PC </option>
-                     <option value={"PS5"} >PS5 </option>
-                     <option value={"PS4"} >PS4 </option>
-                     <option value={"PS3"} >PS3 </option>
-                     <option value={"XBOX Series X"} >XBOX Series X </option>
+                     <option value={"PC"} >PC</option>
+                     <option value={"Linux"} >Linux</option>
+                     <option value={"macOS"} >macOS</option>
+                     <option value={"iOS"} >iOS</option>
+                     <option value={"Android"} >Android</option>
+                     <option value={"PlayStation 5"} >PlayStation 5 </option>
+                     <option value={"PlayStation 4"} >PlayStation 4 </option>
+                     <option value={"PlayStation 3"} >PlayStation 3 </option>
+                     <option value={"PlayStation 2"} >PlayStation 2 </option>
+                     <option value={"Xbox Series S/X"} >Xbox Series S/X </option>
                      <option value={"XBOX One"} >XBOX One </option>
                      <option value={"XBOX 360"} >XBOX 360 </option>
+                     <option value={"XBOX"} >XBOX </option>
                      <option value={"Nintendo Switch"} >Nintendo Switch </option>
                      <option value={"Nintendo WiiU"} >Nintendo WiiU </option>
                      <option value={"Nintendo Wii"} >Nintendo Wii </option>
@@ -215,7 +221,7 @@ export default function AddGame() {
             {plats && <h3>{plats.join(" - ")}</h3>}
             
             <label htmlFor="">Description: </label>
-            <input className={main.formInputs} placeholder="Game's description" onChange={onInputChange} name= "description" type="text" value= {videogame.description}/>
+            <input className={main.formInputs} placeholder="Game's description" onChange={onInputChange} name= "description" type="text" value= {videogame.description} maxLength="500" />
             <br />
             <label htmlFor="">Playtime: </label>
             <input className={main.formInputs} placeholder="Playtime..." onChange={onInputChange} name= "playtime" type="number" min="0" value= {videogame.playtime}/>
