@@ -1,12 +1,12 @@
 import * as ReactIs from "react-is";
-import Videogames from "./videogames"
-import Nav from "./nav";
-import Pagination from "./pagination";
-import GameDetail from "./videogame_detail";
-import About from "./about";
-import Order from "./order";
-import SearchBar from "./searchBar";
-import GameCard from "./videogame";
+import Videogames from "../videogames"
+import Nav from "../nav";
+import Pagination from "../pagination";
+import GameDetail from "../videogame_detail";
+import About from "../about";
+import Order from "../order";
+import SearchBar from "../searchBar";
+import GameCard from "../videogame";
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { Link } from 'react-router-dom';

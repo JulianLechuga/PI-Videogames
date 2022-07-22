@@ -58,7 +58,7 @@ function App() {
         <Route path="/videogames">
           <Nav/>
           <Order/>
-          <Pagination vgsPerPage={vgsPerPage} totalVgs={vgs.length} paginate={paginate} current ={current}/>
+          <Pagination vgsPerPage={vgsPerPage} totalVgs={vgs.length} paginate={paginate}/>
           <Videogames vgs={currentVgs}/>
         </Route>
 
