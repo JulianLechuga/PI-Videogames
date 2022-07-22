@@ -1,20 +1,16 @@
-const { Router, response } = require('express');
+const { Router } = require('express');
 const { Op } = require ("sequelize")
 const { Videogame } = require ("../db")
 const { Genre } = require ("../db")
 const axios = require("axios");
 const { API_KEY } = process.env;
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
 
 const router = Router();
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
 
 router.get("/videogames", async (req, res, next) => {
     let videogamesAPI =  await axios(`https://api.rawg.io/api/games?key=${API_KEY}`)
     let name = req.query.name;
-    let videogame
+    let videogame;
 
     if(name) {
         try {
@@ -41,22 +37,22 @@ router.get("/videogames", async (req, res, next) => {
         }
     } else {
         try {
-            let localDb =  await Videogame.findAll({include: Genre})
-            let subsequent = videogamesAPI.data.next
-            let subsequentReq = await axios(subsequent)
-            let subsequentReq2 =  await axios(subsequentReq.data.next)
-            let subsequentReq3 =  await axios(subsequentReq2.data.next)
-            let subsequentReq4 =  await axios(subsequentReq3.data.next)
-            let subsequentReq5 =  await axios(subsequentReq4.data.next)
-            videogame = [...localDb.concat(videogamesAPI.data.results).concat(subsequentReq.data.results).concat(subsequentReq2.data.results).concat(subsequentReq3.data.results).concat(subsequentReq4.data.results).concat(subsequentReq5.data.results)] ;
+            let localDb =  await Videogame.findAll({include: Genre});
+            let subsequent = videogamesAPI.data.next;
+            let subsequentReq = await axios(subsequent);
+            let subsequentReq2 =  await axios(subsequentReq.data.next);
+            let subsequentReq3 =  await axios(subsequentReq2.data.next);
+            let subsequentReq4 =  await axios(subsequentReq3.data.next);
+            let subsequentReq5 =  await axios(subsequentReq4.data.next);
+            videogame = [...localDb.concat(videogamesAPI.data.results).concat(subsequentReq.data.results).concat(subsequentReq2.data.results).concat(subsequentReq3.data.results).concat(subsequentReq4.data.results).concat(subsequentReq5.data.results)];
             return res.status(200).json(videogame)
         } catch (error) {
-            next(error)
+            next(error);
         };
         let videogames = await Videogame.findAll({include: Genre})
         return res.json(videogames)
-    }
-})
+    };
+});
 
 router.get("/videogames/:id", async (req, res, next) => {
     let id = req.params.id
@@ -75,8 +71,7 @@ router.get("/videogames/:id", async (req, res, next) => {
     } catch (error) {
         next(error)
     };
-
-})
+});
 
 router.post("/videogames", async (req, res, next) => {
     let {name, released, rating, genres, description, metacritic, platforms, background_image, playtime} = req.body

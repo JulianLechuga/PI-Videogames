@@ -11,21 +11,20 @@ export default function Videogames({vgs}) {
                     </div>
                 );
             };
-
+    
     function checkStatus () {
         if(vgs.length === 0) {
             if (document.getElementById("1")) {
                 document.getElementById("1").style.visibility = "hidden"
                 document.getElementById("2").style.visibility = "visible"
             };
-
         } else {
             setTimeout(checkStatus, 12000)
         };
     };
 
     function loadCheck() {
-        setTimeout(checkStatus, 12000)
+        setTimeout(checkStatus, 12000);
     };
     
     return (

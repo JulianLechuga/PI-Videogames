@@ -16,7 +16,7 @@ export default function GameDetail() {
         return () => {
             setVideogame(null)
         }
-    }, []);
+    }, [id]);
 
     return <div>
             {

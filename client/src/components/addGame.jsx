@@ -68,7 +68,6 @@ export default function AddGame() {
     function onSubmit(e) {
         e.preventDefault();
         let regexDate = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
-
         if (videogame.name === '') {
             setError(error = {
               ...error,
@@ -101,7 +100,6 @@ export default function AddGame() {
               ...error,
               released: 'Must introduce a release date'
            });
-           
         } else if (new Date(videogame.released) > new Date()){ 
             setError(error = {
                ...error,
@@ -140,7 +138,7 @@ export default function AddGame() {
                platforms: ""
             })
          };
-         if (!/\S/.test(videogame.name) || new Date(videogame.released) > new Date() || !e.target.name.value || !e.target.released.value || !check.length || !plats.length || !e.target.rating.value) {
+         if (!/\S/.test(videogame.name) || !new Date(videogame.released) > new Date() || !e.target.name.value || !e.target.released.value || !check.length || !plats.length || !e.target.rating.value) {
             alert("Key values are missing") 
         }  else { 
             axios.post(`/videogames`, videogame)
@@ -153,7 +151,6 @@ export default function AddGame() {
 
     return (
         <form action="" onSubmit={onSubmit} className={main.form}>
-
             <label htmlFor="">*Name: </label>
             <input className={main.formInputs} placeholder="Name..." onChange={onInputChange} name= "name" type="text" value= {videogame.name}/>
             {error.name && <p style={{ 'color': 'red' }}>{error.name}</p>}
@@ -185,7 +182,6 @@ export default function AddGame() {
             {error.genres && <p style={{ 'color': 'red' }}>{error.genres}</p>}
             {check && <h3>{check.join(" - ")}</h3>}
             </div>
-
             <label htmlFor="">*Release Date: </label>
             <input className={main.formInputs} placeholder="YYYY/MM/DD" onChange={onInputChange} name= "released" type="date" value= {videogame.released}/>
             {error.released && <p style={{ 'color': 'red' }}>{error.released}</p>}
@@ -219,7 +215,6 @@ export default function AddGame() {
             </select>
             {error.platforms && <p style={{ 'color': 'red' }}>{error.platforms}</p>}
             {plats && <h3>{plats.join(" - ")}</h3>}
-            
             <label htmlFor="">Description: </label>
             <input className={main.formInputs} placeholder="Game's description" onChange={onInputChange} name= "description" type="text" value= {videogame.description} maxLength="500" />
             <br />

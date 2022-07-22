@@ -12,9 +12,9 @@ export default function Pagination({vgsPerPage, totalVgs, paginate}) {
             <nav className={main.pagination}>
                     {pageNumbers.map(number => (
                         <li key={number} className = {main.number}>
-                            <a onClick={() => paginate(number)}>
+                            <span onClick={() => paginate(number)}>
                                 {number}
-                            </a>
+                            </span>
                         </li>
                     ))}
             </nav>

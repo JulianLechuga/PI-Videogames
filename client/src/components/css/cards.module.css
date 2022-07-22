@@ -11,7 +11,7 @@ a:hover { text-decoration: none; }
     padding: 0 8px;
     justify-content: space-around;
     width: 17.16%;
-    height: 285px;
+    height: 280px;
     background-color: rgb(85, 74, 152);
     border-radius: 30px;
     padding-right: 7px ;
@@ -21,6 +21,10 @@ a:hover { text-decoration: none; }
     min-height: 250px;
     transition: all .2s ease-in-out;
   }
+
+.Card h4 {
+  color: white
+}
 
 .Card:hover {
   background-color: rgb(36, 134, 225);

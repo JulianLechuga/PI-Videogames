@@ -1,16 +1,16 @@
 import './App.css';
-import main from "./components/css/various.module.css"
+import main from "./components/css/various.module.css";
 import Videogames from './components/videogames';
-import {Route, Switch} from "react-router-dom"
+import {Route, Switch} from "react-router-dom";
 import Order from './components/order';
 import About from './components/about';
 import GameDetail from './components/videogame_detail';
-import AddGame from "./components/addGame"
+import AddGame from "./components/addGame";
 import Nav from './components/nav';
 import Pagination from './components/pagination';
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { get_Genres, get_Videogames } from "../src/store/actions"
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { get_Genres, get_Videogames } from "../src/store/actions";
 import LandingPage from './components/landing';
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
     if (!vgs.length) {
       dispatch(get_Videogames())
     }
-  }, [])
+  }, [vgs])
 
   let indexOfLastPost = current * vgsPerPage;
   let indexOfFirstPost = indexOfLastPost - vgsPerPage;
@@ -58,7 +58,7 @@ function App() {
         <Route path="/videogames">
           <Nav/>
           <Order/>
-          <Pagination vgsPerPage={vgsPerPage} totalVgs={vgs.length} paginate={paginate}/>
+          <Pagination vgsPerPage={vgsPerPage} totalVgs={vgs.length} paginate={paginate} current ={current}/>
           <Videogames vgs={currentVgs}/>
         </Route>
 
